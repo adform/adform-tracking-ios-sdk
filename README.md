@@ -21,7 +21,15 @@ The use of Adform Tracking SDK requires the following:
 
 ![alt tag](http://37.157.0.44/mobilesdk/help/tracking/ios/image_03.png)
 
+* Go to your application target’s configuration > General > Linked Frameworks and Libraries section and add these frameworks to your project:
+
+   * **AdSupport.framework**
+   * **CoreData.framework**
+   * **SystemConfiguration.framework**
+
 ![alt tag](http://37.157.0.44/mobilesdk/help/tracking/ios/image_04.png)
+
+* Go to your application target’s configuration > Build settings > Linking > Other Linker Flags, and set **-ObjC** flag.
 
 ![alt tag](http://37.157.0.44/mobilesdk/help/tracking/ios/image_05.png)
 
