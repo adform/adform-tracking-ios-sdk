@@ -55,13 +55,15 @@ Thats it! You are ready to go.
 
 ## 4. Custom Adform Tracking SDK implementations
 
-* Sending tracking events manualy
+* For Sending tracking events manualy you need import **AdformTrackingSDK.h** in **ViewController.h** 
 
 ![alt tag](http://37.157.0.44/mobilesdk/help/tracking/ios/image_08.png)
 
 ````
 #import "AdformTrackingSDK.h"
 ````
+
+* And set custom parameters as, follows
 
 ![alt tag](http://37.157.0.44/mobilesdk/help/tracking/ios/image_09.png)
 
