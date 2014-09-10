@@ -14,7 +14,15 @@ When you run mobile campaigns, boost of new app installs are often one of the ma
 
 ![alt tag](http://37.157.0.44/mobilesdk/help/tracking/ios/image_06.png)
 
+````
+#import "AdformTrackingSDK.h"
+````
+
 ![alt tag](http://37.157.0.44/mobilesdk/help/tracking/ios/image_07.png)
+
+````
+[[AdformTrackingSDK sharedInstance] startTrackingWithTrackingPointId:@"123456"];
+````
 
 ![alt tag](http://37.157.0.44/mobilesdk/help/tracking/ios/image_08.png)
 
