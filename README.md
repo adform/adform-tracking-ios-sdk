@@ -35,7 +35,7 @@ The use of Adform Tracking SDK requires the following:
 
 ## 3. Basic Adform Tracking SDK implementation
 
-* Import AdformTrackingSDK.h in AppDelegate
+* Import **AdformTrackingSDK.h** in **AppDelegate.h**
 
 ![alt tag](http://37.157.0.44/mobilesdk/help/tracking/ios/image_06.png)
 
