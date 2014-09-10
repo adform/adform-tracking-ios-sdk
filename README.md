@@ -21,3 +21,9 @@ When you run mobile campaigns, boost of new app installs are often one of the ma
 ![alt tag](http://37.157.0.44/mobilesdk/help/tracking/ios/image_09.png)
 
 ![alt tag](http://37.157.0.44/mobilesdk/help/tracking/ios/image_10.png)
+
+````
+[[AdformTrackingSDK sharedInstance] setDefaultApplicationName:@"Custom App Name"];
+    
+[[AdformTrackingSDK sharedInstance] startTrackingWithTrackingPointId:@"123456"];
+````
