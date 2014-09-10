@@ -2,6 +2,8 @@
 
 When you run mobile campaigns, boost of new app installs are often one of the main goals. We are happy to announce that today we are launching app installs solution for iOS and Android devices. Easy to install SDK will enable campaign app installs tracking and reporting in Adform platform without need to deal with 3rd party SDKs and invest tons of time into that.
 
+## 1. General Info
+
 ![alt tag](http://37.157.0.44/mobilesdk/help/tracking/ios/image_01.png)
 
 ![alt tag](http://37.157.0.44/mobilesdk/help/tracking/ios/image_02.png)
@@ -24,11 +26,18 @@ When you run mobile campaigns, boost of new app installs are often one of the ma
 [[AdformTrackingSDK sharedInstance] startTrackingWithTrackingPointId:@"123456"];
 ````
 
+Thats it! You are ready to go.
+
+## 5. Custom Adform Tracking SDK implementations
+
+* Sending tracking events manualy
+
 ![alt tag](http://37.157.0.44/mobilesdk/help/tracking/ios/image_08.png)
 
 ````
 #import "AdformTrackingSDK.h"
 ````
+
 
 ![alt tag](http://37.157.0.44/mobilesdk/help/tracking/ios/image_09.png)
 
@@ -47,6 +56,8 @@ NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
 
 [[AdformTrackingSDK sharedInstance] sendTrackingInformation:trackPoint];
 ````
+
+* Setting Custom App Name for Tracking Point
 
 ![alt tag](http://37.157.0.44/mobilesdk/help/tracking/ios/image_10.png)
 
