@@ -28,5 +28,6 @@
 - (void)sendTrackingInformation:(TrackPoint *)trackPoint;
 - (void)setCustomParameterWithKey:(NSString *)key withValue:(NSString *)parameter;
 - (void)setCustomParameters:(NSDictionary *)parametersDictionary;
+- (void)setDefaultApplicationName:(NSString *)applicationName;
 
 @end
