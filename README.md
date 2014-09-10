@@ -4,7 +4,18 @@ When you run mobile campaigns, boost of new app installs are often one of the ma
 
 ## 1. General Info
 
+The use of Adform Tracking SDK requires the following:
+
+* Xcode 5.0 or later.
+* iOS SDK 7.0 or later.
+* Requires deployment target 6.0 or later
+
 ![alt tag](http://37.157.0.44/mobilesdk/help/tracking/ios/image_01.png)
+
+## 2. Drag Adform Tracking SDK folder to your project.
+
+* Download latest build version of Adform Tracking SDK.
+* Drag Adform Tracking SDK folder to your project, when asked select **Copy items into destination group's folder**.
 
 ![alt tag](http://37.157.0.44/mobilesdk/help/tracking/ios/image_02.png)
 
