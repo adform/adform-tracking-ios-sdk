@@ -33,11 +33,17 @@ The use of Adform Tracking SDK requires the following:
 
 ![alt tag](http://37.157.0.44/mobilesdk/help/tracking/ios/image_05.png)
 
+## 3. Basic Adform Tracking SDK implementation
+
+* Import AdformTrackingSDK.h in AppDelegate
+
 ![alt tag](http://37.157.0.44/mobilesdk/help/tracking/ios/image_06.png)
 
 ````
 #import "AdformTrackingSDK.h"
 ````
+
+* In **application:didFinishLaunchingWithOptions:** method set custom parameters (optional) and call **startTrackingWithTrackingPointId:** method with your tracking pixel id
 
 ![alt tag](http://37.157.0.44/mobilesdk/help/tracking/ios/image_07.png)
 
@@ -47,7 +53,7 @@ The use of Adform Tracking SDK requires the following:
 
 Thats it! You are ready to go.
 
-## 5. Custom Adform Tracking SDK implementations
+## 4. Custom Adform Tracking SDK implementations
 
 * Sending tracking events manualy
 
@@ -56,7 +62,6 @@ Thats it! You are ready to go.
 ````
 #import "AdformTrackingSDK.h"
 ````
-
 
 ![alt tag](http://37.157.0.44/mobilesdk/help/tracking/ios/image_09.png)
 
