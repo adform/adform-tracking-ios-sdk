@@ -45,7 +45,7 @@ The use of Adform Tracking SDK requires the following:
 
 * In **application:didFinishLaunchingWithOptions:** method set custom parameters (optional) and call **startTracking:** method with your tracking point id
 
-![alt tag](http://37.157.0.44/mobilesdk/help/tracking/ios/image_07.png)
+![alt tag](http://37.157.0.44/mobilesdk/help/images/ios/page_04.png)
 
 ````
 [[AdformTrackingSDK sharedInstance] startTracking:123456];
@@ -57,7 +57,7 @@ Thats it! You are ready to go.
 
 * For Sending tracking events manualy you need import **AdformTrackingSDK.h** in **ViewController.h** 
 
-![alt tag](http://37.157.0.44/mobilesdk/help/tracking/ios/image_08.png)
+![alt tag](http://37.157.0.44/mobilesdk/help/images/ios/page_03.png)
 
 ````
 #import "AdformTrackingSDK.h"
@@ -65,7 +65,7 @@ Thats it! You are ready to go.
 
 * And set custom parameters as, follows
 
-![alt tag](http://37.157.0.44/mobilesdk/help/tracking/ios/image_09.png)
+![alt tag](http://37.157.0.44/mobilesdk/help/images/ios/page_02.png)
 
 ````
 TrackPoint *trackPoint = [[TrackPoint alloc] initTrackPoint:123456];
@@ -81,7 +81,7 @@ TrackPoint *trackPoint = [[TrackPoint alloc] initTrackPoint:123456];
 
 * Setting Custom App Name for Tracking Point
 
-![alt tag](http://37.157.0.44/mobilesdk/help/tracking/ios/image_10.png)
+![alt tag](http://37.157.0.44/mobilesdk/help/images/ios/page_01.png)
 
 ````
 [[AdformTrackingSDK sharedInstance] setAppName:@"Custom Application Name"];
