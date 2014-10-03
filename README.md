@@ -43,12 +43,12 @@ The use of Adform Tracking SDK requires the following:
 #import "AdformTrackingSDK.h"
 ````
 
-* In **application:didFinishLaunchingWithOptions:** method set custom parameters (optional) and call **startTrackingWithTrackingPointId:** method with your tracking pixel id
+* In **application:didFinishLaunchingWithOptions:** method set custom parameters (optional) and call **startTracking:** method with your tracking point id
 
 ![alt tag](http://37.157.0.44/mobilesdk/help/tracking/ios/image_07.png)
 
 ````
-[[AdformTrackingSDK sharedInstance] startTrackingWithTrackingPointId:@"123456"];
+[[AdformTrackingSDK sharedInstance] startTracking:123456];
 ````
 
 Thats it! You are ready to go.
@@ -68,19 +68,15 @@ Thats it! You are ready to go.
 ![alt tag](http://37.157.0.44/mobilesdk/help/tracking/ios/image_09.png)
 
 ````
-TrackPoint *trackPoint = [[TrackPoint alloc] initWithTrackingPointId:@"123456"];
+TrackPoint *trackPoint = [[TrackPoint alloc] initTrackPoint:123456];
 
 [trackPoint setSectionName:@"Custom Section Name"];
 
-NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+[trackPoint addParameter:@"var1" withValue:@"Custom Variable 1"];
+[trackPoint addParameter:@"var2" withValue:@"Custom Variable 2"];
+[trackPoint addParameter:@"var3" withValue:@"Custom Variable 3"];
 
-[trackPoint setCustomParameterWithKey:@"var1" withValue:@"Custom Variable 1"];
-[trackPoint setCustomParameterWithKey:@"var2" withValue:@"Custom Variable 2"];
-[trackPoint setCustomParameterWithKey:@"var3" withValue:@"Custom Variable 3"];
-
-[[AdformTrackingSDK sharedInstance] setCustomParameters: parameters];
-
-[[AdformTrackingSDK sharedInstance] sendTrackingInformation:trackPoint];
+[[AdformTrackingSDK sharedInstance] sendTrackPoint:trackPoint];
 ````
 
 * Setting Custom App Name for Tracking Point
@@ -88,7 +84,7 @@ NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
 ![alt tag](http://37.157.0.44/mobilesdk/help/tracking/ios/image_10.png)
 
 ````
-[[AdformTrackingSDK sharedInstance] setDefaultApplicationName:@"Custom Application Name"];
+[[AdformTrackingSDK sharedInstance] setAppName:@"Custom Application Name"];
     
-[[AdformTrackingSDK sharedInstance] startTrackingWithTrackingPointId:@"123456"];
+[[AdformTrackingSDK sharedInstance] startTracking:123456];
 ````
