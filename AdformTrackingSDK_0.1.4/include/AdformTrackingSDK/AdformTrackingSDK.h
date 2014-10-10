@@ -9,8 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "TrackPoint.h"
 
-@class UIWebView, DatabaseRepository;
-
 @interface AdformTrackingSDK : NSObject
 
 @property (nonatomic, assign, readonly, getter=isEnabled) BOOL enabled;
