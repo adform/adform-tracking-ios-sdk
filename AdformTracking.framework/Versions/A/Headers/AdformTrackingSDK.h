@@ -1,13 +1,13 @@
 //
 //  AdformTrackingSDK.h
-//  AdformTrackingSDK
+//  AdformTracking
 //
-//  Created by Linar on 7/15/14.
 //  Copyright (c) 2014 Adform. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "TrackPoint.h"
+
+@class TrackPoint;
 
 @interface AdformTrackingSDK : NSObject
 
@@ -32,7 +32,7 @@
 /**
  Use this method to begin tracking.
 
- You should call it right after the application launched in application:didFinishLaunchingWithOptions: method.
+ You should call it right after the application launched in [UIApplicationDelegate application:didFinishLaunchingWithOptions:] method.
  
  After calling this method SDK automatically tracks application start and/or download.
  
@@ -70,6 +70,18 @@
  @param applicationName A string with custom applicationName.
  */
 - (void)setAppName:(NSString *)applicationName;
+
+/**
+ Used to proccess the url that opend the application to handle deep linking and interactions with SDK.
+ 
+ Must be called in [UIApplicationDelegate application:openURL:sourceApplication:annotation:].
+ 
+ @param url URL that was passed in [UIApplicationDelegate application:openURL:sourceApplication:annotation:] method.
+ @param sourceApplication sourceApplication that was passed in [UIApplicationDelegate application:openURL:sourceApplication:annotation:] method.
+ 
+ @return YES if the call was intended for AdformTrackingSDK, else NO.
+ */
+- (BOOL )applicationOpenUrl:(NSURL *)url sourceApplication:(NSString *)sourceApplication;
 
 
 

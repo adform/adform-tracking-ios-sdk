@@ -1,8 +1,7 @@
 //
 //  TrackPointEntity.h
-//  AdformTrackingSDK
+//  AdformTracking
 //
-//  Created by Linar on 8/21/14.
 //  Copyright (c) 2014 Adform. All rights reserved.
 //
 
