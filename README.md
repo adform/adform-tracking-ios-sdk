@@ -50,11 +50,13 @@ For more information about CocoaPods visit [CocoaPods site](http://cocoapods.org
 ### 2.2. Manual
 
 * Download latest build version of Adform Tracking SDK.
-* Drag **AdformTracking.framework** to your project, when asked select **Copy items into destination group's folder**.
+* Drag **AdformTracking.framework** to your project.
 
-![alt tag](https://dl.dropboxusercontent.com/u/36359547/Screenshots/Screen%20Shot%202014-12-22%20at%2014.05.12.png)
+![alt tag](Screenshots/drag_and_drop.png)
 
-![alt tag](https://dl.dropboxusercontent.com/u/36359547/Screenshots/Screen%20Shot%202014-12-22%20at%2015.15.33.png)
+* When asked select **Copy items into destination group's folder**.
+
+![alt tag](Screenshots/copy.png)
 
 * Go to your application target’s configuration > General > Linked Frameworks and Libraries section and add these frameworks to your project:
 
@@ -62,11 +64,11 @@ For more information about CocoaPods visit [CocoaPods site](http://cocoapods.org
    * **CoreData.framework**
    * **SystemConfiguration.framework**
 
-![alt tag](https://dl.dropboxusercontent.com/u/36359547/Screenshots/Screen%20Shot%202014-12-22%20at%2014.12.35.png)
+![alt tag](Screenshots/frameworks.png)
 
 * Go to your application target’s configuration > Build settings > Linking > Other Linker Flags, and set **-ObjC** flag.
 
-![alt tag](https://dl.dropboxusercontent.com/u/36359547/Screenshots/Screen%20Shot%202014-12-22%20at%2015.18.32.png)
+![alt tag](Screenshots/flag.png)
 
 ## 3. Basic Adform Tracking SDK implementation
 
@@ -80,7 +82,7 @@ For more information about CocoaPods visit [CocoaPods site](http://cocoapods.org
 
 Thats it! You are ready to go.
 
-![alt tag](https://dl.dropboxusercontent.com/u/36359547/Screenshots/Screen%20Shot%202014-12-22%20at%2014.35.32.png)
+![alt tag](Screenshots/basic.png)
 
 * Optionally you can set custom application name and parameters before calling `startTracking:`.
 
@@ -91,7 +93,7 @@ Thats it! You are ready to go.
     [[AdformTrackingSDK sharedInstance] startTracking:123456];
 ````
 
-![alt tag](https://dl.dropboxusercontent.com/u/36359547/Screenshots/Screen%20Shot%202014-12-22%20at%2014.40.00.png)
+![alt tag](Screenshots/custom_params.png)
 
 ## 4. Custom Adform Tracking SDK implementations
 
@@ -111,7 +113,7 @@ Thats it! You are ready to go.
     [[AdformTrackingSDK sharedInstance] sendTrackPoint:trackPoint];
 ````
 
-![alt tag](https://dl.dropboxusercontent.com/u/36359547/Screenshots/Screen%20Shot%202014-12-22%20at%2014.55.57.png)
+![alt tag](Screenshots/custom_tracking.png)
 
 ## 5. Limit tracking
 
@@ -138,4 +140,4 @@ The implementation is very simple, you just have to call `AdformTrackingSDK` met
 }
 ````
 
-![alt tag](https://dl.dropboxusercontent.com/u/36359547/Screenshots/Screen%20Shot%202014-12-23%20at%2011.51.12.png)
+![alt tag](Screenshots/deeplink.png)
