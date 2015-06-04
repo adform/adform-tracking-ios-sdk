@@ -9,6 +9,7 @@
 
 @class TrackPoint;
 
+
 @interface AdformTrackingSDK : NSObject
 
 @property (nonatomic, assign, readonly, getter=isEnabled) BOOL enabled;
@@ -36,11 +37,11 @@
  
  After calling this method SDK automatically tracks application start and/or download.
  
- If you want to send some custom data, you must set it before calling this method. You can do it by using setCustomParameter:withValue:, setCustomParameters: and setAppName: methods.
+ If you want to send some custom data, you must set it before calling this method. You can do it by using addParameter:withValue:, setParameters: and setAppName: methods.
  
  @param trackingPointId Tracking point id provided to you by Adform.
  */
-- (void)startTracking:(NSInteger )trackingPointId;
+- (void)startTracking:(long )trackingPointId;
 
 /**
  Sends custom tracking information to server.

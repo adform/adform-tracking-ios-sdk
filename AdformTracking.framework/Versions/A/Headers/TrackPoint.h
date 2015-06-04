@@ -16,7 +16,7 @@
  
  @result A new TrackPoint object instance.
  */
-- (id)initTrackPoint:(NSInteger )trackingPointId;
+- (id)initTrackPoint:(long )trackingPointId;
 
 
 // Getters
@@ -26,7 +26,7 @@
  
  @return A string containing tracking point id.
  */
-- (NSInteger )getTrackPointId;
+- (long )getTrackPointId;
 
 /**
  Returns a section name set to the tracking point.
