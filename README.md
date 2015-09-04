@@ -2,6 +2,27 @@
 
 When you run mobile campaigns, boost of new app installs are often one of the main goals. We are happy to announce that today we are launching app installs solution for iOS and Android devices. Easy to install SDK will enable campaign app installs tracking and reporting in Adform platform without need to deal with 3rd party SDKs and invest tons of time into that.
 
+
+## IMPORTANT - IOS 9 Support
+
+As you may be aware, with the upcoming introduction of iOS 9, Apple will be urging application developers towards greater security. This is a program called App Transport Security (ATS) and is documented in more detail in an [Apple tech note](https://developer.apple.com/library/prerelease/ios/technotes/App-Transport-Security-Technote/).
+
+Applications built for iOS 9 will be asked to choose one of the following four security models for external resources:
+* ATS for all resources (the default)
+* ATS for all, with exceptions: the app will allow insecure http requests to a limited set of whitelisted domains.
+* ATS disabled, with exceptions: the app will allow insecure http requests to all domains, *except* for a set of listed domains for which https is required
+* ATS fully disabled
+
+In order to avoid possible problems after IOS9 release, we recommend to disable ATS in order to ensure Adform SDK continues to work as expected. To do so, developers should add the following to their plist:
+
+```
+<key>NSAppTransportSecurity</key>
+<dict>
+    <key>NSAllowsArbitraryLoads</key>
+    <true/>
+</dict>
+```
+
 ## 1. General Info
 
 The use of Adform Tracking SDK requires the following:
