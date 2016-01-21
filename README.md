@@ -74,7 +74,7 @@ For more information about CocoaPods visit [CocoaPods site](http://cocoapods.org
 
 * Import `AdformTracking/AdformTracking.h` in `AppDelegate.h`
 
-* In `application:didFinishLaunchingWithOptions:` method call `startTracking:` method with your tracking point id.
+* In `application:didFinishLaunchingWithOptions:` method call `startTracking:` method with your Client Tracking ID.
 
 ````
     [[AdformTrackingSDK sharedInstance] startTracking:123456];
