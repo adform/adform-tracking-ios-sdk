@@ -13,6 +13,7 @@
 @interface AdformTrackingSDK : NSObject
 
 @property (nonatomic, assign, readonly, getter=isEnabled) BOOL enabled;
+@property (nonatomic, assign, readonly, getter=isSendSimCardStateEnabled) BOOL sendSimCardStateEnabled;
 
 /**
  Creates and returns a singleton value.
@@ -29,6 +30,21 @@
  @param enabled You can disable the sdk by passing FALSE or enable with TRUE.
  */
 - (void)setEnabled:(BOOL)enabled;
+
+/**
+ Enables or disables SIM card state information sending.
+ 
+ If set to true SDK will track if SIM card is inserted to device or not.
+ Default value - false.
+ 
+ @important On iPhones running iOS 6 this value may be inacurate. Because 
+    the device retains SIM card information until it is restarted 
+    even if the card was removed.
+ 
+ @param enabled If true - enables SIM card state tracking if false - disables it.
+ 
+ */
+- (void)setSendSimCardStateEnabled:(BOOL)enabled;
 
 /**
  Use this method to begin tracking.

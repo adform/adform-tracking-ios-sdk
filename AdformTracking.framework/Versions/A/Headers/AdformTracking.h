@@ -7,3 +7,4 @@
 
 #import "AdformTrackingSDK.h"
 #import "TrackPoint.h"
+#import "AFProduct.h"

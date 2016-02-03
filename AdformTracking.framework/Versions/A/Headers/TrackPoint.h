@@ -7,6 +7,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class AFProduct;
+
 @interface TrackPoint : NSObject
 
 /**
@@ -49,6 +51,13 @@
  */
 - (NSDictionary *)getParameters;
 
+/**
+ Returns an array of products assigned to this track point.
+ 
+ @return An array with products or nil if none were set.
+ */
+- (NSArray *)products;
+
 
 // Setters
 
@@ -80,6 +89,24 @@
  @param parameters A dictionary containing parameters.
  */
 - (void)setParameters:(NSDictionary *)parameters;
+
+/**
+ Sets an array of products to track point.
+ 
+ This method overrides any products already set and they will be removed.
+ 
+ @param products An array of products to set.
+ */
+- (void)setProducts:(NSArray *)products;
+
+/**
+ Assigns a single product to track point.
+ 
+ This method doesn't remove previously added products.
+ 
+ @param product A product that should be associated to the track point.
+ */
+- (void)addProduct:(AFProduct *)product;
 
 
 //Deprecated

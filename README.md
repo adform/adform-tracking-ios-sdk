@@ -63,6 +63,7 @@ For more information about CocoaPods visit [CocoaPods site](http://cocoapods.org
    * **AdSupport.framework**
    * **CoreData.framework**
    * **SystemConfiguration.framework**
+   * **CoreTelephony.framework**
 
 ![alt tag](Screenshots/frameworks.png)
 
@@ -76,7 +77,7 @@ For more information about CocoaPods visit [CocoaPods site](http://cocoapods.org
 
 * In `application:didFinishLaunchingWithOptions:` method call `startTracking:` method with your Client Tracking ID.
 
-````
+````objc
     [[AdformTrackingSDK sharedInstance] startTracking:123456];
 ````
 
@@ -86,7 +87,7 @@ Thats it! You are ready to go.
 
 * Optionally you can set custom application name and parameters before calling `startTracking:`.
 
-````
+````objc
     [[AdformTrackingSDK sharedInstance] setAppName:@"CustomApplicationName"];
     [[AdformTrackingSDK sharedInstance] addParameter:@"var1" withValue:@"value1"];
     
@@ -101,7 +102,7 @@ Thats it! You are ready to go.
 
 * Create a `TrackPoint` instance with your track point id, set section name, custom parameters and send the track point.
 
-````
+````objc
     TrackPoint *trackPoint = [[TrackPoint alloc] initTrackPoint:123456];
     
     [trackPoint setSectionName:@"Custom Section Name"];
@@ -119,7 +120,7 @@ Thats it! You are ready to go.
 
 You can disable the Adform Tracking SDK from tracking any events by calling `setEnabled:` with parameter `NO`. This setting is remembered between application launches. By default tracking is enabled.
 
-````
+````objc
     [[AdformTrackingSDK sharedInstance] setEnabled:NO];
 ```` 
 
@@ -132,7 +133,7 @@ Adform Tracking SDK uses deep-link tracking to attribute part of Facebook events
 
 The implementation is very simple, you just have to call `AdformTrackingSDK` method `applicationOpenUrl:sourceApplication:` in your `AppDelegate` class's method `application:openURL:sourceApplication:annotation:` and pass url and sourceApplication parameters.
 
-````
+````objc
 - (BOOL )application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     
     return [[AdformTrackingSDK sharedInstance] applicationOpenUrl:url
@@ -141,3 +142,34 @@ The implementation is very simple, you just have to call `AdformTrackingSDK` met
 ````
 
 ![alt tag](Screenshots/deeplink.png)
+
+## 7. SIM card state tracking
+
+Adform Tracking SDK allows you to track user device SIM card state. This feature allows you to see if a user device has a SIM card inserted into it. 
+
+This feature is turned off by default, therefore if you want to use it, you need to enable it. To do so you just need to use the `setSendSimCardStateEnabled:` method.
+
+````objc
+    [[AdformTrackingSDK sharedInstance] setSendSimCardStateEnabled:true];
+````
+
+## 8. Product variables
+
+It is posible to send additional products information with tracking points. This feature is very useful in e-cmomerce apps. To do so you have two options, first use `addProduct:` method and add products to the trackpoint one at a time, second use `setProducts:` method and set an array of products. Either way you must set `AFProduct` objects.
+
+````objc
+    TrackPoint *trackPoint = [[TrackPoint alloc] initTrackPoint:TRACKPOINT_ID];
+    
+    AFProduct *product = [[AFProduct alloc] initWithCategoryName:@"Product category name"
+                                                      categoryId:@"Product category id"
+                                                     productName:@"Product name"
+                                                       productId:@"Product id"
+                                                          weight:@"Product weight"
+                                                            step:@"Product step"
+                                                    productSales:@"Product sales"
+                                                    productCount:@"Product count"
+                                                          custom:@"Custom product information"];
+    [trackPoint addProduct:product];
+    
+    [[AdformTrackingSDK sharedInstance] sendTrackPoint:trackPoint];
+````
