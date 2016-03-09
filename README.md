@@ -144,13 +144,18 @@ Also it is posible to send additional product variables information with trackin
                                                           custom:@"Custom product information"];
     [trackPoint addProduct:product];
     
-    AFProduct *product = [AFProduct new];
-    product.productName = @"My Product Name";
-    [trackPoint addProduct:product];
-    
     [trackPoint addParameter:@"var1" withValue:@"Custom Variable 1"];
     [trackPoint addParameter:@"var2" withValue:@"Custom Variable 2"];
     [[AdformTrackingSDK sharedInstance] sendTrackPoint:trackPoint];
+```` 
+
+If want to send only part of available product data, you can avoid using big init method and set those properties manually after initializing an object with default initializer.
+```` 
+    TrackPoint *trackPoint = [[TrackPoint alloc] initTrackPoint:Tracking_ID];
+
+    AFProduct *product = [AFProduct new];
+    product.productName = @"My Product Name";
+    [trackPoint addProduct:product];
 ```` 
 
 ## 5. Limit tracking
