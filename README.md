@@ -127,7 +127,7 @@ To logicaly group tracking points you can set separate app names for each custom
     [[AdformTrackingSDK sharedInstance] sendTrackPoint:trackPoint];
 ````
 
-Also it is posible to send additional product variables information with tracking points. This feature is very useful in e-cmomerce apps. To do so you have two options, first use `addProduct:` method and add products to the trackpoint one at a time, second use `setProducts:` method and set an array of products. Either way you must set `AFProduct` objects.
+Also it is posible to send additional product variables information with tracking points. To do so you have two options, first use `addProduct:` method and add products to the trackpoint one at a time, second use `setProducts:` method and set an array of products. Either way you must set `AFProduct` objects.
 
 ````objc
     TrackPoint *trackPoint = [[TrackPoint alloc] initTrackPoint:Tracking_ID];
