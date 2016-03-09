@@ -144,6 +144,7 @@ Also it is posible to send additional product variables information with trackin
     [trackPoint addProduct:product];
     
     [[AdformTrackingSDK sharedInstance] sendTrackPoint:trackPoint];
+```` 
 
 ## 5. Limit tracking
 
