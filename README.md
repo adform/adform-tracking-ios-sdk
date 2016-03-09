@@ -100,16 +100,16 @@ Thats it! You are ready to go. Now in Adform system will be created default trac
 
 * For sending custom tracking events manually you need to import `AdformTracking/AdformTracking.h` in any class you want to send events from, in provided example we use `ViewController.h`.
 
-* Create a `TrackPoint` instance with your client tracking id, set tracking point name, custom variables and send the tracking point. 
+* Create a `TrackPoint` instance with your client `Tracking_ID`. After that you can set tracking point name, custom variables (`key` values should be the same as it is in Adform data exports, for example sv1, sv2..sv89, var1, var2...var10, sales, orderid, etc.) and finally send the tracking point. 
 
 ````objc
     TrackPoint *trackPoint = [[TrackPoint alloc] initTrackPoint:Tracking_ID];
     
     [trackPoint setSectionName:@"Custom Tracking Point Name"];
     
-    [trackPoint addParameter:@"var1" withValue:@"Custom Variable 1"];
-    [trackPoint addParameter:@"var2" withValue:@"Custom Variable 2"];
-    [trackPoint addParameter:@"var3" withValue:@"Custom Variable 3"];
+    [trackPoint addParameter:@"key1" withValue:@"Custom Variable 1"];
+    [trackPoint addParameter:@"key2" withValue:@"Custom Variable 2"];
+    [trackPoint addParameter:@"key3" withValue:@"Custom Variable 3"];
     
     [[AdformTrackingSDK sharedInstance] sendTrackPoint:trackPoint];
 ````
@@ -149,7 +149,7 @@ Also it is posible to send additional product variables information with trackin
     [[AdformTrackingSDK sharedInstance] sendTrackPoint:trackPoint];
 ```` 
 
-If want to send only part of available product data, you can avoid using big init method by setting those properties manually after creating an object with default initializer.
+If you want to send only part of available product data, you can avoid using big init method by setting those properties manually after creating an object with default initializer.
 ````objc
     TrackPoint *trackPoint = [[TrackPoint alloc] initTrackPoint:Tracking_ID];
 
