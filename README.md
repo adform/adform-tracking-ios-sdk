@@ -156,6 +156,8 @@ If want to send only part of available product data, you can avoid using big ini
     AFProduct *product = [AFProduct new];
     product.productName = @"My Product Name";
     [trackPoint addProduct:product];
+    
+    [[AdformTrackingSDK sharedInstance] sendTrackPoint:trackPoint];
 ```` 
 
 ## 5. Limit tracking
