@@ -150,7 +150,7 @@ Also it is posible to send additional product variables information with trackin
 ```` 
 
 If want to send only part of available product data, you can avoid using big init method and set those properties manually after initializing an object with default initializer.
-```` 
+````objc
     TrackPoint *trackPoint = [[TrackPoint alloc] initTrackPoint:Tracking_ID];
 
     AFProduct *product = [AFProduct new];
