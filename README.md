@@ -131,6 +131,7 @@ Also it is posible to send additional product variables information with trackin
 
 ````objc
     TrackPoint *trackPoint = [[TrackPoint alloc] initTrackPoint:Tracking_ID];
+    [trackPoint setSectionName:@"Custom Tracking Point Name"];
     
     AFProduct *product = [[AFProduct alloc] initWithCategoryName:@"Product category name"
                                                       categoryId:@"Product category id"
@@ -143,6 +144,8 @@ Also it is posible to send additional product variables information with trackin
                                                           custom:@"Custom product information"];
     [trackPoint addProduct:product];
     
+    [trackPoint addParameter:@"var1" withValue:@"Custom Variable 1"];
+    [trackPoint addParameter:@"var2" withValue:@"Custom Variable 2"];
     [[AdformTrackingSDK sharedInstance] sendTrackPoint:trackPoint];
 ```` 
 
@@ -181,5 +184,6 @@ This feature is turned off by default, therefore if you want to use it, you need
 
 ````objc
     [[AdformTrackingSDK sharedInstance] setSendSimCardStateEnabled:true];
+    [[AdformTrackingSDK sharedInstance] startTracking:Tracking_ID];
 ````
 
