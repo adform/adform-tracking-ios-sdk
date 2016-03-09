@@ -122,7 +122,7 @@ To logicaly group tracking points you can set separate app names for each custom
     TrackPoint *trackPoint = [[TrackPoint alloc] initTrackPoint:Tracking_ID];
     
     [trackPoint setSectionName:@"Custom Tracking Point Name"];
-    [trackPoint setAppName:”Custom_app_name-Section_name”];
+    [trackPoint setAppName:@"Custom_app_name-Section_name"];
     
     [[AdformTrackingSDK sharedInstance] sendTrackPoint:trackPoint];
 ````
