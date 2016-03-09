@@ -75,37 +75,37 @@ For more information about CocoaPods visit [CocoaPods site](http://cocoapods.org
 
 * Import `AdformTracking/AdformTracking.h` in `AppDelegate.h`
 
-* In `application:didFinishLaunchingWithOptions:` method call `startTracking:` method with your Client Tracking ID.
+* In `application:didFinishLaunchingWithOptions:` method call `startTracking:` method with your Client Tracking ID. This method should be called only one time, when app starts.
 
 ````objc
-    [[AdformTrackingSDK sharedInstance] startTracking:123456];
+    [[AdformTrackingSDK sharedInstance] startTracking:Tracking_ID];
 ````
 
-Thats it! You are ready to go.
+Thats it! You are ready to go. Now in Adform system will be created default tracking points (Download, Start, Update), when they will be triggered for the first time.
 
 ![alt tag](Screenshots/basic.png)
 
-* Optionally you can set custom application name and parameters before calling `startTracking:`.
+* Optionally you can set custom application name and custom variables before calling `startTracking:`.
 
 ````objc
     [[AdformTrackingSDK sharedInstance] setAppName:@"CustomApplicationName"];
     [[AdformTrackingSDK sharedInstance] addParameter:@"var1" withValue:@"value1"];
     
-    [[AdformTrackingSDK sharedInstance] startTracking:123456];
+    [[AdformTrackingSDK sharedInstance] startTracking:Tracking_ID];
 ````
 
 ![alt tag](Screenshots/custom_params.png)
 
 ## 4. Custom Adform Tracking SDK implementations
 
-* For sending tracking events manually you need to import `AdformTracking/AdformTracking.h` in any class you want to send events from, in provided example we use `ViewController.h`.
+* For sending custom tracking events manually you need to import `AdformTracking/AdformTracking.h` in any class you want to send events from, in provided example we use `ViewController.h`.
 
-* Create a `TrackPoint` instance with your track point id, set section name, custom parameters and send the track point.
+* Create a `TrackPoint` instance with your client tracking id, set tracking point name, custom variables and send the tracking point. 
 
 ````objc
-    TrackPoint *trackPoint = [[TrackPoint alloc] initTrackPoint:123456];
+    TrackPoint *trackPoint = [[TrackPoint alloc] initTrackPoint:Tracking_ID];
     
-    [trackPoint setSectionName:@"Custom Section Name"];
+    [trackPoint setSectionName:@"Custom Tracking Point Name"];
     
     [trackPoint addParameter:@"var1" withValue:@"Custom Variable 1"];
     [trackPoint addParameter:@"var2" withValue:@"Custom Variable 2"];
@@ -115,6 +115,35 @@ Thats it! You are ready to go.
 ````
 
 ![alt tag](Screenshots/custom_tracking.png)
+
+To logicaly group tracking points you can set separate app names for each custom tracking point. This would allow to use app name together with custom section name.
+
+````objc
+    TrackPoint *trackPoint = [[TrackPoint alloc] initTrackPoint:Tracking_ID];
+    
+    [trackPoint setSectionName:@"Custom Tracking Point Name"];
+    [trackPoint setAppName:”Custom_app_name-Section_name”];
+    
+    [[AdformTrackingSDK sharedInstance] sendTrackPoint:trackPoint];
+````
+
+Also it is posible to send additional product variables information with tracking points. This feature is very useful in e-cmomerce apps. To do so you have two options, first use `addProduct:` method and add products to the trackpoint one at a time, second use `setProducts:` method and set an array of products. Either way you must set `AFProduct` objects.
+
+````objc
+    TrackPoint *trackPoint = [[TrackPoint alloc] initTrackPoint:Tracking_ID];
+    
+    AFProduct *product = [[AFProduct alloc] initWithCategoryName:@"Product category name"
+                                                      categoryId:@"Product category id"
+                                                     productName:@"Product name"
+                                                       productId:@"Product id"
+                                                          weight:@"Product weight"
+                                                            step:@"Product step"
+                                                    productSales:@"Product sales"
+                                                    productCount:@"Product count"
+                                                          custom:@"Custom product information"];
+    [trackPoint addProduct:product];
+    
+    [[AdformTrackingSDK sharedInstance] sendTrackPoint:trackPoint];
 
 ## 5. Limit tracking
 
@@ -153,23 +182,3 @@ This feature is turned off by default, therefore if you want to use it, you need
     [[AdformTrackingSDK sharedInstance] setSendSimCardStateEnabled:true];
 ````
 
-## 8. Product variables
-
-It is posible to send additional products information with tracking points. This feature is very useful in e-cmomerce apps. To do so you have two options, first use `addProduct:` method and add products to the trackpoint one at a time, second use `setProducts:` method and set an array of products. Either way you must set `AFProduct` objects.
-
-````objc
-    TrackPoint *trackPoint = [[TrackPoint alloc] initTrackPoint:TRACKPOINT_ID];
-    
-    AFProduct *product = [[AFProduct alloc] initWithCategoryName:@"Product category name"
-                                                      categoryId:@"Product category id"
-                                                     productName:@"Product name"
-                                                       productId:@"Product id"
-                                                          weight:@"Product weight"
-                                                            step:@"Product step"
-                                                    productSales:@"Product sales"
-                                                    productCount:@"Product count"
-                                                          custom:@"Custom product information"];
-    [trackPoint addProduct:product];
-    
-    [[AdformTrackingSDK sharedInstance] sendTrackPoint:trackPoint];
-````
