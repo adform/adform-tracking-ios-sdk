@@ -14,6 +14,7 @@
 
 @property (nonatomic, assign, readonly, getter=isEnabled) BOOL enabled;
 @property (nonatomic, assign, readonly, getter=isSendSimCardStateEnabled) BOOL sendSimCardStateEnabled;
+@property (nonatomic, assign, readonly, getter=isHTTPSEnabled) BOOL HTTPSEnabled;
 
 /**
  Creates and returns a singleton value.
@@ -100,6 +101,13 @@
  */
 - (BOOL )applicationOpenUrl:(NSURL *)url sourceApplication:(NSString *)sourceApplication;
 
+/**
+ Enables or disables HTTPS support.
+ 
+ By default sdk uses HTTPS because that is required by Apple on iOS 9+ platforms.
+ It is not recomended, but you can use this method to disable HTTPS.
+ */
+- (void)setHTTPSEnabled:(BOOL)HTTPSEnabled;
 
 
 //Deprecated
