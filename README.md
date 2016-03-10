@@ -198,28 +198,7 @@ This feature is turned off by default, therefore if you want to use it, you need
     [[AdformTrackingSDK sharedInstance] startTracking:Tracking_ID];
 ````
 
-## 8. Product variables
-
-It is posible to send additional products information with tracking points. This feature is very useful in e-cmomerce apps. To do so you have two options, first use `addProduct:` method and add products to the trackpoint one at a time, second use `setProducts:` method and set an array of products. Either way you must set `AFProduct` objects.
-
-````objc
-    TrackPoint *trackPoint = [[TrackPoint alloc] initTrackPoint:TRACKPOINT_ID];
-    
-    AFProduct *product = [[AFProduct alloc] initWithCategoryName:@"Product category name"
-                                                      categoryId:@"Product category id"
-                                                     productName:@"Product name"
-                                                       productId:@"Product id"
-                                                          weight:@"Product weight"
-                                                            step:@"Product step"
-                                                    productSales:@"Product sales"
-                                                    productCount:@"Product count"
-                                                          custom:@"Custom product information"];
-    [trackPoint addProduct:product];
-    
-    [[AdformTrackingSDK sharedInstance] sendTrackPoint:trackPoint];
-````
-
-## 9. Security
+## 8. Security
 
 By default AdformTracking sdk uses HTTPS protocol for network comunnications, but there is a possibility to disable it and use insecure HTTP protocol. Example below shows you how to do it.
 
