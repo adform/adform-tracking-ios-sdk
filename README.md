@@ -148,6 +148,35 @@ Also it is posible to send additional product variables information with trackin
     [trackPoint addParameter:@"var2" withValue:@"Custom Variable 2"];
     [[AdformTrackingSDK sharedInstance] sendTrackPoint:trackPoint];
 ```` 
+Also for same tracking point you can list more than one product variables list:
+````objc
+    TrackPoint *trackPoint = [[TrackPoint alloc] initTrackPoint:Tracking_ID];
+    [trackPoint setSectionName:@"Custom Tracking Point Name"];
+    
+    AFProduct *product1 = [[AFProduct alloc] initWithCategoryName:@"Product category name"
+                                                      categoryId:@"Product category id"
+                                                     productName:@"Product name"
+                                                       productId:@"Product id"
+                                                          weight:@"Product weight"
+                                                            step:@"Product step"
+                                                    productSales:@"Product sales"
+                                                    productCount:@"Product count"
+                                                          custom:@"Custom product information"];
+                                                          
+    AFProduct *product2 = [[AFProduct alloc] initWithCategoryName:@"Product category name"
+                                                      categoryId:@"Product category id"
+                                                     productName:@"Product name"
+                                                       productId:@"Product id"
+                                                          weight:@"Product weight"
+                                                            step:@"Product step"
+                                                    productSales:@"Product sales"
+                                                    productCount:@"Product count"
+                                                          custom:@"Custom product information"];
+    [trackPoint setProducts:@[product1, product2]];
+
+    [[AdformTrackingSDK sharedInstance] sendTrackPoint:trackPoint];
+```` 
+
 
 If you want to send only part of available product data, you can avoid using big init method by setting those properties manually after creating an object with default initializer.
 ````objc
