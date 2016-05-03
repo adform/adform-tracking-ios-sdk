@@ -81,7 +81,7 @@ For more information about CocoaPods visit [CocoaPods site](http://cocoapods.org
     [[AdformTrackingSDK sharedInstance] startTracking:Tracking_ID];
 ````
 
-Thats it! You are ready to go. Now in Adform system will be created default tracking points (Download, Start, Update), when they will be triggered for the first time.
+Thats it! You are ready to go. Now in Adform system will see default tracking points (Download, Start, Update), when they are triggered.
 
 ![alt tag](Screenshots/basic.png)
 
