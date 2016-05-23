@@ -99,7 +99,7 @@ Thats it! You are ready to go. Now in Adform system will see default tracking po
     order.firstName = @"First Name";
     order.lastName = @"Last Name";
 
-    // You can set custom varibles too.
+    // You also can set other custom variables.
     [order setCustomVariable:@"var1" forKey:1];
     [order setSystemVariables:@"sysVar1" forKey:1];
     [order setNumericSystemVariables:@(123.45) forKey:1];
@@ -113,23 +113,41 @@ Thats it! You are ready to go. Now in Adform system will see default tracking po
 
 * For sending custom tracking events manually you need to import `AdformTracking/AdformTracking.h` in any class you want to send events from, in provided example we use `ViewController.h`.
 
-* Create an `AFTrackPoint` instance with your client `Tracking_ID`. After that you can set tracking point name, custom variables (`key` values should be the same as it is in Adform data exports, for example sv1, sv2..sv89, var1, var2...var10, sales, orderid, etc.) and finally send the tracking point. 
+* Create an `AFTrackPoint` instance with your client `Tracking_ID`. After that you can set tracking point name, custom variables and finally send the tracking point. 
 
-* Create a `AFTrackPoint` instance with your track point id, set section name, custom parameters, a.k.a. order, and send the track point.
+* When defining variables' it's required to keep in mind, that there are different type of variables:
+	* Custom variables with predefined names (orderid, currency, firstname, etc.)
+	* Custom variables (var1-var10)
+	* System variables (sv1-sv89)
+	* Numeric system variables (svn1, svn2)
+
+* Create a `AFTrackPoint` instance with your track point id, set custom application name, custom parameters, a.k.a. order, and send the track point.
 
 ````objc
     AFTrackPoint *trackPoint = [[AFTrackPoint alloc] initTrackPoint:TRACKING_ID];
 
-    [trackPoint setSectionName:@"Custom Section Name"];
+    [trackPoint setSectionName:@"Custom Application Name"];
 
     AFOrder *order = [AFOrder new];
+    order.orderid = @"Order ID";
+    order.sale = 1234; // integer type
+    order.currency = @"Eur";
+    order.orderStatus = @"Sold";
     order.firstName = @"First Name";
     order.lastName = @"Last Name";
+    order.country = @"Country";
+    order.address1 = @"Address 1";
+    order.address2 = @"Address 2";
+    order.zip = @"ZIP code";
+    order.email = @"E-mail";
+    order.phone = @"Phone";
+    order.gender = @"Gender";
+    order.ageGroup = @"Age group";
 
-    // You can also set custom varibles.
-    [order setCustomVariable:@"var1" forKey:1];
-    [order setSystemVariable:@"sysVar1" forKey:1];
-    [order setNumericSystemVariable:@(123.45) forKey:1];
+    // You can also set other custom variables.
+    [order setCustomVariable:@"Var1 value" forKey:1]; //forKey defines variable index, e.g. forKey:3 means Var3
+    [order setSystemVariable:@"Sv1 value" forKey:1]; //forKey defines variable index, e.g. forKey:3 means Sv3
+    [order setNumericSystemVariable:@(123.45) forKey:1]; //forKey defines variable index, e.g. forKey:2 means Svn2
 
     [trackPoint setOrder:order];
 
@@ -167,8 +185,6 @@ Also it is posible to send additional product variables information with trackin
                                                           custom:@"Custom product information"];
     [trackPoint addProduct:product];
     
-    [trackPoint addParameter:@"var1" withValue:@"Custom Variable 1"];
-    [trackPoint addParameter:@"var2" withValue:@"Custom Variable 2"];
     [[AdformTrackingSDK sharedInstance] sendTrackPoint:trackPoint];
 ```` 
 Also for same tracking point you can list more than one product variables list:
