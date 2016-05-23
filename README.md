@@ -6,9 +6,9 @@ When you run mobile campaigns, boost of new app installs are often one of the ma
 
 The use of Adform Tracking SDK requires the following:
 
-* Xcode 5.0 or later.
+* Xcode 7.0 or later.
 * iOS SDK 7.0 or later.
-* Requires deployment target 6.0 or later.
+* Requires deployment target 7.0 or later.
 * Requires ARC to be enabled. 
 
 ## 2. Integration
@@ -64,12 +64,13 @@ For more information about CocoaPods visit [CocoaPods site](http://cocoapods.org
    * **CoreData.framework**
    * **SystemConfiguration.framework**
    * **CoreTelephony.framework**
+   * **SafariServices.framework**
 
 ![alt tag](Screenshots/frameworks.png)
 
-* Go to your application target’s configuration > Build settings > Linking > Other Linker Flags, and set **-ObjC** flag.
-
-![alt tag](Screenshots/flag.png)
+* Adform Tracking SDK uses Protocol Buffers - Google's data interchange format. 
+Therefore you need to import Protobuf library to your project. 
+Instructions on how to do it can be found [here](https://github.com/google/protobuf/tree/master/objectivec#building).
 
 ## 3. Basic Adform Tracking SDK implementation
 
@@ -78,43 +79,63 @@ For more information about CocoaPods visit [CocoaPods site](http://cocoapods.org
 * In `application:didFinishLaunchingWithOptions:` method call `startTracking:` method with your Client Tracking ID. This method should be called only one time, when app starts.
 
 ````objc
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
     [[AdformTrackingSDK sharedInstance] startTracking:Tracking_ID];
+
+    return YES;
+}
 ````
 
 Thats it! You are ready to go. Now in Adform system will see default tracking points (Download, Start, Update), when they are triggered.
 
-![alt tag](Screenshots/basic.png)
 
 * Optionally you can set custom application name and custom variables before calling `startTracking:`.
 
 ````objc
     [[AdformTrackingSDK sharedInstance] setAppName:@"CustomApplicationName"];
-    [[AdformTrackingSDK sharedInstance] addParameter:@"var1" withValue:@"value1"];
-    
-    [[AdformTrackingSDK sharedInstance] startTracking:Tracking_ID];
-````
 
-![alt tag](Screenshots/custom_params.png)
+    AFOrder *order = [AFOrder new];
+    order.firstName = @"First Name";
+    order.lastName = @"Last Name";
+
+    // You can set custom varibles too.
+    [order setCustomVariable:@"var1" forKey:1];
+    [order setSystemVariables:@"sysVar1" forKey:1];
+    [order setNumericSystemVariables:@(123.45) forKey:1];
+
+    [[AdformTrackingSDK sharedInstance] setOrder:order];
+
+    [[AdformTrackingSDK sharedInstance] startTracking:TRACKING_ID];
+````
 
 ## 4. Custom Adform Tracking SDK implementations
 
 * For sending custom tracking events manually you need to import `AdformTracking/AdformTracking.h` in any class you want to send events from, in provided example we use `ViewController.h`.
 
-* Create a `TrackPoint` instance with your client `Tracking_ID`. After that you can set tracking point name, custom variables (`key` values should be the same as it is in Adform data exports, for example sv1, sv2..sv89, var1, var2...var10, sales, orderid, etc.) and finally send the tracking point. 
+* Create an `AFTrackPoint` instance with your client `Tracking_ID`. After that you can set tracking point name, custom variables (`key` values should be the same as it is in Adform data exports, for example sv1, sv2..sv89, var1, var2...var10, sales, orderid, etc.) and finally send the tracking point. 
+
+* Create a `AFTrackPoint` instance with your track point id, set section name, custom parameters, a.k.a. order, and send the track point.
 
 ````objc
-    TrackPoint *trackPoint = [[TrackPoint alloc] initTrackPoint:Tracking_ID];
-    
-    [trackPoint setSectionName:@"Custom Tracking Point Name"];
-    
-    [trackPoint addParameter:@"key1" withValue:@"Custom Variable 1"];
-    [trackPoint addParameter:@"key2" withValue:@"Custom Variable 2"];
-    [trackPoint addParameter:@"key3" withValue:@"Custom Variable 3"];
-    
+    AFTrackPoint *trackPoint = [[AFTrackPoint alloc] initTrackPoint:TRACKING_ID];
+
+    [trackPoint setSectionName:@"Custom Section Name"];
+
+    AFOrder *order = [AFOrder new];
+    order.firstName = @"First Name";
+    order.lastName = @"Last Name";
+
+    // You can also set custom varibles.
+    [order setCustomVariable:@"var1" forKey:1];
+    [order setSystemVariable:@"sysVar1" forKey:1];
+    [order setNumericSystemVariable:@(123.45) forKey:1];
+
+    [trackPoint setOrder:order];
+
     [[AdformTrackingSDK sharedInstance] sendTrackPoint:trackPoint];
 ````
 
-![alt tag](Screenshots/custom_tracking.png)
 
 To logicaly group tracking points you can set separate app names for each custom tracking point. This would allow to use app name together with custom section name.
 
@@ -126,6 +147,8 @@ To logicaly group tracking points you can set separate app names for each custom
     
     [[AdformTrackingSDK sharedInstance] sendTrackPoint:trackPoint];
 ````
+
+## 5. Product variables
 
 Also it is posible to send additional product variables information with tracking points. To do so you have two options, first use `addProduct:` method and add products to the trackpoint one at a time, second use `setProducts:` method and set an array of products. Either way you must set `AFProduct` objects.
 
@@ -149,6 +172,7 @@ Also it is posible to send additional product variables information with trackin
     [[AdformTrackingSDK sharedInstance] sendTrackPoint:trackPoint];
 ```` 
 Also for same tracking point you can list more than one product variables list:
+
 ````objc
     TrackPoint *trackPoint = [[TrackPoint alloc] initTrackPoint:Tracking_ID];
     [trackPoint setSectionName:@"Custom Tracking Point Name"];
@@ -179,6 +203,7 @@ Also for same tracking point you can list more than one product variables list:
 
 
 If you want to send only part of available product data, you can avoid using big init method by setting those properties manually after creating an object with default initializer.
+
 ````objc
     TrackPoint *trackPoint = [[TrackPoint alloc] initTrackPoint:Tracking_ID];
 
@@ -189,7 +214,7 @@ If you want to send only part of available product data, you can avoid using big
     [[AdformTrackingSDK sharedInstance] sendTrackPoint:trackPoint];
 ```` 
 
-## 5. Limit tracking
+## 6. Limit tracking
 
 You can disable the Adform Tracking SDK from tracking any events by calling `setEnabled:` with parameter `NO`. This setting is remembered between application launches. By default tracking is enabled.
 
@@ -200,7 +225,7 @@ You can disable the Adform Tracking SDK from tracking any events by calling `set
 You can check if tracking is enabled by calling `isEnabled` method.
  
 
-## 6. Deeplink tracking
+## 7. Deeplink tracking
 
 Adform Tracking SDK uses deep-link tracking to attribute part of Facebook events. You should implement it if you are going to use our SDK for Facebook tracking.
 
@@ -214,9 +239,7 @@ The implementation is very simple, you just have to call `AdformTrackingSDK` met
 }
 ````
 
-![alt tag](Screenshots/deeplink.png)
-
-## 7. SIM card state tracking
+## 8. SIM card state tracking
 
 Adform Tracking SDK allows you to track user device SIM card state. This feature allows you to see if a user device has a SIM card inserted into it. 
 
@@ -227,10 +250,36 @@ This feature is turned off by default, therefore if you want to use it, you need
     [[AdformTrackingSDK sharedInstance] startTracking:Tracking_ID];
 ````
 
-## 8. Security
+## 9. Security
 
 By default AdformTracking sdk uses HTTPS protocol for network comunnications, but there is a possibility to disable it and use insecure HTTP protocol. Example below shows you how to do it.
 
 ````objc
 	[[AdformTrackingSDK sharedInstance] setHTTPSEnabled:false];
 ````
+
+# Migration guide
+
+## Upgrading to 1.0
+
+* If you are integrating SDK manually you need to add additional `SafariServices` framework dependency to your project.
+* Also if you are integrating SDK manually you need to import Google Protobuf library to your project. 
+Instructions on how to do it can be found [here](https://github.com/google/protobuf/tree/master/objectivec#building).
+* `TrackPoint` class have been renamed to `AFTrackPoint`.
+* `getParameters`, `addParameter:withValue:` and `setParameters:` methods of `AFTrackPoint` and `AdformAdvertisingSDK` classes have been deprecated. Instead of them to set custom variables to tracking points you should use `setOrder:` method and `AFOrder` class.
+
+
+# Release notes
+
+## 1.0
+
+### New Features
+
+* Improved app installs attribution;
+* Multiple trackpoint support;
+
+### Bug Fixes
+
+* Minor bug fixes;
+
+

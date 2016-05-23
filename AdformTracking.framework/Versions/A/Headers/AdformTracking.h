@@ -5,6 +5,7 @@
 //  Copyright (c) 2014 Adform. All rights reserved.
 //
 
-#import "AdformTrackingSDK.h"
-#import "TrackPoint.h"
-#import "AFProduct.h"
+#import <AdformTracking/AdformTrackingSDK.h>
+#import <AdformTracking/AFTrackPoint.h>
+#import <AdformTracking/AFProduct.h>
+#import <AdformTracking/AFOrder.h>

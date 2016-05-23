@@ -7,13 +7,29 @@
 
 #import <Foundation/Foundation.h>
 
-@class TrackPoint;
-
+@class AFTrackPoint, AFOrder;
 
 @interface AdformTrackingSDK : NSObject
 
+/**
+ Identifies if Adform Tracking sdk is enabled.
+ If it is disabled, no tracking information will collected and sent
+ to server.
+ */
 @property (nonatomic, assign, readonly, getter=isEnabled) BOOL enabled;
+
+/**
+ Identifies is sim card state tracking is enabled.
+ 
+ @important On iPhones running iOS 6 SIM card state may be inacurate. Because
+    the device retains SIM card information until it is restarted
+    even if the card was removed.
+ */
 @property (nonatomic, assign, readonly, getter=isSendSimCardStateEnabled) BOOL sendSimCardStateEnabled;
+
+/**
+ Identifies if sdk is using HTTPS protocol for network communications.
+ */
 @property (nonatomic, assign, readonly, getter=isHTTPSEnabled) BOOL HTTPSEnabled;
 
 /**
@@ -38,7 +54,7 @@
  If set to true SDK will track if SIM card is inserted to device or not.
  Default value - false.
  
- @important On iPhones running iOS 6 this value may be inacurate. Because 
+ @important On iPhones running iOS 6 SIM card state may be inacurate. Because
     the device retains SIM card information until it is restarted 
     even if the card was removed.
  
@@ -48,39 +64,40 @@
 - (void)setSendSimCardStateEnabled:(BOOL)enabled;
 
 /**
- Use this method to begin tracking.
+ Begins tracking.
 
  You should call it right after the application launched in [UIApplicationDelegate application:didFinishLaunchingWithOptions:] method.
- 
  After calling this method SDK automatically tracks application start and/or download.
- 
- If you want to send some custom data, you must set it before calling this method. You can do it by using addParameter:withValue:, setParameters: and setAppName: methods.
+ If you want to send some custom data, you must set it before calling this method.
  
  @param trackingPointId Tracking point id provided to you by Adform.
  */
 - (void)startTracking:(long )trackingPointId;
 
 /**
- Sends custom tracking information to server.
+ An optional method used to begin tracking with multiple tracking point ids.
  
- @param trackPoint TrackPoint instance containing custom tracking data.
+ You should call it right after the application launched in [UIApplicationDelegate application:didFinishLaunchingWithOptions:] method.
+ After calling this method SDK automatically tracks application start and/or download.
+ If you want to send some custom data, you must set it before calling this method.
+ 
+ @param trackingPointIds An array of tracking point ids provided to you by Adform.
  */
-- (void)sendTrackPoint:(TrackPoint *)trackPoint;
+- (void)startTrackingWithIds:(NSArray <NSNumber *> *)trackingPointIds;
 
 /**
- Adds custom parameter for initial tracking points ("Start" and "Download").
+ Sends custom tracking point to server.
  
- @param key A key for a parameter.
- @param parameter A parameter for a key.
+ @param trackPoint AFTrackPoint object to send.
  */
-- (void)addParameter:(NSString *)key withValue:(NSString *)parameter;
+- (void)sendTrackPoint:(AFTrackPoint *)trackPoint;
 
 /**
- Sets multiple custom parameters for initial tracking points ("Start" and "Download").
+ Sends an array of tracking points to server.
  
- @param parameters A dictionary containing parameters.
+ @param trackPoints An array of AFTrackPoint objects to send.
  */
-- (void)setParameters:(NSDictionary *)parameters;
+- (void)sendTrackPoints:(NSArray <AFTrackPoint *> *)trackPoints;
 
 /**
  Sets custom application name for initial tracking points ("Start" and "Download").
@@ -88,6 +105,11 @@
  @param applicationName A string with custom applicationName.
  */
 - (void)setAppName:(NSString *)applicationName;
+
+/**
+ Adds custom parameters for initial tracking points ("Start" and "Download").
+ */
+- (void)setOrder:(AFOrder *)order;
 
 /**
  Used to proccess the url that opend the application to handle deep linking and interactions with SDK.
@@ -113,38 +135,18 @@
 //Deprecated
 
 /**
- Use this method to begin tracking.
- 
- You should call it right after the application launched in application:didFinishLaunchingWithOptions: method.
- 
- After calling this method SDK automatically tracks application start and/or download.
- 
- If you want to send some custom data, you must set it before calling this method. You can do it by using setCustomParameter:withValue:, setCustomParameters: and setAppName: methods.
- 
- @param trackingPointId Tracking point id provided to you by Adform.
- */
-- (void)startTrackingWithTrackingPointId:(NSString *)trackingPointId __deprecated_msg("Please use startTracking: instead!");
-
-/**
- Sends custom tracking information to server.
- 
- @param trackPoint TrackPoint instance containing custom tracking data.
- */
-- (void)sendTrackingInformation:(TrackPoint *)trackPoint __deprecated_msg("Please use sendTrackPoint: instead!");
-
-/**
- Sets custom parameter for initial tracking points ("Start" and "Download").
+ Adds custom parameter for initial tracking points ("Start" and "Download").
  
  @param key A key for a parameter.
  @param parameter A parameter for a key.
  */
-- (void)setCustomParameterWithKey:(NSString *)key withValue:(NSString *)parameter __deprecated_msg("Please use setCustomParameter:withValue: instead!");
+- (void)addParameter:(NSString *)key withValue:(NSString *)parameter __deprecated_msg("To add custom parameters to trackpoint use 'setOrder:' instead!");
 
 /**
- Sets default application name for initial tracking points ("Start" and "Download").
+ Sets multiple custom parameters for initial tracking points ("Start" and "Download").
  
- @param applicationName A string with custom applicationName.
+ @param parameters A dictionary containing parameters.
  */
-- (void)setDefaultApplicationName:(NSString *)applicationName __deprecated_msg("Please use setAppName: instead!");
+- (void)setParameters:(NSDictionary *)parameters __deprecated_msg("To add custom parameters to trackpoint use 'setOrder:' instead!");
 
 @end

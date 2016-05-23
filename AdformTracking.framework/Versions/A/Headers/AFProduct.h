@@ -9,11 +9,41 @@
 #import <Foundation/Foundation.h>
 
 /**
+ Ecomerce workflow step. values.
+ 
+ - AFEcomerceStepUndefined: 
+    Step is not defined. The default value for product.
+ 
+ - AFEcomerceStepView: 
+    Identifies that user has viewed a product.
+ 
+ - AFEcomerceStepBasket: 
+    Identifies that user has added a product to its shopping basket.
+ 
+ - AFEcomerceStepPurchase:
+    Identifies that user has purchased a product.
+ */
+typedef NS_ENUM(NSInteger, AFEcomerceStep) {
+    
+    /// Step is not defined. The default value for product.
+    AFEcomerceStepUndefined = 0,
+    
+    /// Identifies that user has viewed a product.
+    AFEcomerceStepView = 1,
+    
+    /// Identifies that user has added a product to its shopping basket.
+    AFEcomerceStepBasket = 2,
+    
+    /// Identifies that user has purchased a product.
+    AFEcomerceStepPurchase = 3
+};
+
+/**
  Defines a product object.
  
  Products may be set to track points to send product variables.
  */
-@interface AFProduct : NSObject <NSCoding>
+@interface AFProduct : NSObject
 
 /**
  The name name of the product category.
@@ -38,36 +68,39 @@
 /**
  The product weight.
  */
-@property (nonatomic, strong) NSString *weight;
+@property (nonatomic, assign) NSInteger weight;
 
 /**
- The product step.
+ Ecomerce workflow step.
+ 
+ @see AFEcomerceStep.
  */
-@property (nonatomic, strong) NSString *step;
+@property (nonatomic, assign) AFEcomerceStep step;
 
 /**
  The sales of the product.
  */
-@property (nonatomic, strong) NSString *productSales;
+@property (nonatomic, assign) float productSales;
 
 /**
  The product count.
  */
-@property (nonatomic, strong) NSString *productCount;
+@property (nonatomic, assign) NSInteger productCount;
 
 /**
  Additional information that may be associated to the product.
  */
 @property (nonatomic, strong) NSString *custom;
 
+
 - (instancetype)initWithCategoryName:(NSString *)categoryName
                           categoryId:(NSString *)categoryId
                          productName:(NSString *)productName
                            productId:(NSString *)productId
-                              weight:(NSString *)weight
-                                step:(NSString *)step
-                        productSales:(NSString *)productSales
-                        productCount:(NSString *)productCount
+                              weight:(NSInteger )weight
+                                step:(NSInteger )step
+                        productSales:(float )productSales
+                        productCount:(NSInteger )productCount
                               custom:(NSString *)custom;
 
 @end
