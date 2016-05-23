@@ -278,6 +278,7 @@ By default AdformTracking sdk uses HTTPS protocol for network comunnications, bu
 
 ## Upgrading to 1.0
 
+In SDK version 1.0 was added functionality, which requires additional changes in code, during SDK update from older versions:
 * If you are integrating SDK manually you need to add additional `SafariServices` framework dependency to your project.
 * Also if you are integrating SDK manually you need to import Google Protobuf library to your project. 
 Instructions on how to do it can be found [here](https://github.com/google/protobuf/tree/master/objectivec#building).
