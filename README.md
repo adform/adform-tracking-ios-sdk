@@ -11,6 +11,8 @@ The use of Adform Tracking SDK requires the following:
 * Requires deployment target 7.0 or later.
 * Requires ARC to be enabled. 
 
+**Please folow Migration guide below if you are updating SDK to version 1.0.**
+
 ## 2. Integration
 
 ### 2.1. Using CocoaPods
