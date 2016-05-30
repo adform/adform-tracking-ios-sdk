@@ -322,6 +322,12 @@ Instructions on how to do it can be found [here](https://github.com/google/proto
 
 # Release notes
 
+## 1.1
+
+### New Features
+
+* Add basket size parameter to order;
+
 ## 1.0
 
 ### New Features
