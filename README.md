@@ -132,7 +132,7 @@ Thats it! You are ready to go. Now in Adform system will see default tracking po
 
     AFOrder *order = [AFOrder new];
     order.orderid = @"Order ID";
-    order.sale = 1234; // integer type
+    order.sale = 1234; //numeric format
     order.currency = @"Eur";
     order.orderStatus = @"Sold";
     order.firstName = @"First Name";
@@ -145,12 +145,12 @@ Thats it! You are ready to go. Now in Adform system will see default tracking po
     order.phone = @"Phone";
     order.gender = @"Gender";
     order.ageGroup = @"Age group";
-    order.basketSize = 12; // integer type
+    order.basketSize = 12; //numeric format
 
     // You can also set other custom variables.
     [order setCustomVariable:@"Var1 value" forKey:1]; //forKey defines variable index, e.g. forKey:3 means Var3
     [order setSystemVariable:@"Sv1 value" forKey:1]; //forKey defines variable index, e.g. forKey:3 means Sv3
-    [order setNumericSystemVariable:@(123.45) forKey:1]; //forKey defines variable index, e.g. forKey:2 means Svn2
+    [order setNumericSystemVariable:@(123.45) forKey:1]; //forKey defines variable index, e.g. forKey:2 means Svn2; Only numeric values allowed
 
     [trackPoint setOrder:order];
 
