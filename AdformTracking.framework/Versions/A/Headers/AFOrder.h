@@ -21,6 +21,9 @@
 /// Sale price
 @property (nonatomic, assign) float sale;
 
+/// Sale bucket size.
+@property (nonatomic, assign) NSInteger basketSize;
+
 /// Order currency code
 @property (nonatomic, strong) NSString *currency;
 

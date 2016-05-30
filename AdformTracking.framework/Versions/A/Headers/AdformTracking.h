@@ -7,5 +7,6 @@
 
 #import <AdformTracking/AdformTrackingSDK.h>
 #import <AdformTracking/AFTrackPoint.h>
+#import <AdformTracking/AFTrackPointsBuilder.h>
 #import <AdformTracking/AFProduct.h>
 #import <AdformTracking/AFOrder.h>
