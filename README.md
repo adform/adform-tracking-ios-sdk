@@ -145,6 +145,7 @@ Thats it! You are ready to go. Now in Adform system will see default tracking po
     order.phone = @"Phone";
     order.gender = @"Gender";
     order.ageGroup = @"Age group";
+    order.basketSize = 12; // integer type
 
     // You can also set other custom variables.
     [order setCustomVariable:@"Var1 value" forKey:1]; //forKey defines variable index, e.g. forKey:3 means Var3
@@ -232,7 +233,37 @@ If you want to send only part of available product data, you can avoid using big
     [[AdformTrackingSDK sharedInstance] sendTrackPoint:trackPoint];
 ```` 
 
-## 6. Limit tracking
+## 6. Sending information to multiple clients
+
+It is possible to send tracking information to multiple clients by defining each client's Tracking id.
+
+In order to start tracking, please use an example below:
+
+````objc
+    [[AdformTrackingSDK sharedInstance] startTrackingWithIds:@[Tracking_ID1, Tracking_ID2, Tracking_ID3]];
+````
+
+To send custom tracking points for multiple clients, you should use `AFTrackPointsBuilder` class. It helps you create multiple trackpoints with same information, but differrent tracking id.Example bellow ilustrates how to do so:
+
+````objc
+    AFTrackPointsBuilder *trackPointBuilder = [[AFTrackPointsBuilder alloc] init];
+    
+    // You must set at least these properties:
+    trackPointBuilder.trackPointIds = @[Tracking_ID1, Tracking_ID2, Tracking_ID3];
+    trackPointBuilder.sectionName = @"Custom trackpoint";
+    
+    // Additionally you can set more information to track.
+    trackPointBuilder.applicationName = @"Custom application name";
+    trackPointBuilder.order = yourOrder;
+    
+    // Create trackpoints
+    NSArray *trackPoints = [trackPointBuilder build];
+    
+    // Send trackpoints.
+    [[AdformTrackingSDK sharedInstance] sendTrackPoints:trackPoints];
+````
+
+## 7. Limit tracking
 
 You can disable the Adform Tracking SDK from tracking any events by calling `setEnabled:` with parameter `NO`. This setting is remembered between application launches. By default tracking is enabled.
 
@@ -243,7 +274,7 @@ You can disable the Adform Tracking SDK from tracking any events by calling `set
 You can check if tracking is enabled by calling `isEnabled` method.
  
 
-## 7. Deeplink tracking
+## 8. Deeplink tracking
 
 Adform Tracking SDK uses deep-link tracking to attribute part of Facebook events. You should implement it if you are going to use our SDK for Facebook tracking.
 
@@ -257,7 +288,7 @@ The implementation is very simple, you just have to call `AdformTrackingSDK` met
 }
 ````
 
-## 8. SIM card state tracking
+## 9. SIM card state tracking
 
 Adform Tracking SDK allows you to track user device SIM card state. This feature allows you to see if a user device has a SIM card inserted into it. 
 
@@ -268,13 +299,14 @@ This feature is turned off by default, therefore if you want to use it, you need
     [[AdformTrackingSDK sharedInstance] startTracking:Tracking_ID];
 ````
 
-## 9. Security
+## 10. Security
 
 By default AdformTracking sdk uses HTTPS protocol for network comunnications, but there is a possibility to disable it and use insecure HTTP protocol. Example below shows you how to do it.
 
 ````objc
 	[[AdformTrackingSDK sharedInstance] setHTTPSEnabled:false];
 ````
+
 
 # Migration guide
 
