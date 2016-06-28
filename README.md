@@ -71,7 +71,7 @@ For more information about CocoaPods visit [CocoaPods site](http://cocoapods.org
 ![alt tag](Screenshots/frameworks.png)
 
 * Adform Tracking SDK uses Protocol Buffers - Google's data interchange format. 
-Therefore you need to import Protobuf library to your project. You should use [3.0.0-alpha-4 version](https://github.com/google/protobuf/releases/download/v3.0.0-beta-1/protobuf-objectivec-3.0.0-alpha-4.zip) of the library. 
+Therefore you need to import Protobuf library to your project. You should use [3.0.0-beta-3.1 version](https://github.com/google/protobuf/releases/tag/v3.0.0-beta-3.1) of the library. 
 Instructions on how to integrate it can be found [here](https://github.com/google/protobuf/tree/master/objectivec#building).
 
 ## 3. Basic Adform Tracking SDK implementation
@@ -321,6 +321,12 @@ Instructions on how to do it can be found [here](https://github.com/google/proto
 
 
 # Release notes
+
+## 1.1.1
+
+### New Features
+
+* Now SDK uses Protocol Buffers v3.0.0-beta-3.1 library;
 
 ## 1.1
 
