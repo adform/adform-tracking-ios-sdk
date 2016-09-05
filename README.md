@@ -17,7 +17,8 @@ The use of Adform Tracking SDK requires the following:
 
 Tracking SDK is also available on these platforms:
 
-* ***[Unity](https://github.com/adform/adform-tracking-sdk-unity-plugin)*** 
+* ***[Unity](https://github.com/adform/adform-tracking-sdk-unity-plugin)***
+* ***[Xamarin](https://github.com/adform/adform-tracking-sdk-xamarin/wiki/xamarin-ios-integration-guide)*** 
 
 ## 2. Integration
 
