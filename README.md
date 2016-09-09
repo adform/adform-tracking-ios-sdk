@@ -2,6 +2,19 @@
 
 When you run mobile campaigns, boost of new app installs are often one of the main goals. We are happy to announce that today we are launching app installs solution for iOS and Android devices. Easy to install SDK will enable campaign app installs tracking and reporting in Adform platform without need to deal with 3rd party SDKs and invest tons of time into that.
 
+
+# iOS 10 support
+
+In iOS 10, before you access privacy-sensitive data like Camera, Contacts, and so on, 
+you must ask for the authorization. You can do this, by providing usage description
+in application info plist file. Adform tracking sdk requires `NSLocationWhenInUseUsageDescription`,
+`NSPhotoLibraryUsageDescription` and `NSCalendarsUsageDescription` keys to be defined to work properly. You should 
+set their values as defined bellow.
+
+1. NSLocationWhenInUseUsageDescription - Your location is used to show relevant ads nearby.
+2. NSCalendarsUsageDescription - Event will be added to your calendar from the ad.
+3. NSPhotoLibraryUsageDescription - Photo library will be used to store a picture from the ad.
+
 ## 1. General Info
 
 The use of Adform Tracking SDK requires the following:
@@ -11,7 +24,7 @@ The use of Adform Tracking SDK requires the following:
 * Requires deployment target 7.0 or later.
 * Requires ARC to be enabled. 
 
-**Please folow Migration guide below if you are updating SDK to version 1.0.**
+[**Please folow Migration guide below if you are updating SDK to version 1.0.**](adform-tracking-ios-sdk#upgrading-to-10)
 
 ## 2. Integration
 
@@ -307,6 +320,15 @@ By default AdformTracking sdk uses HTTPS protocol for network comunnications, bu
 	[[AdformTrackingSDK sharedInstance] setHTTPSEnabled:false];
 ````
 
+## 11. The use of SFSafariViewController
+
+By default Adform Traccking SDK uses a web view to send tracking information to the server,
+but it is possible to enable the use of SFSafariViewController for this.
+Example below shows you how to do it:
+
+````objc
+	[[AdformTrackingSDK sharedInstance] setSafariConrollerEnabled:true];
+````
 
 # Migration guide
 
@@ -321,6 +343,12 @@ Instructions on how to do it can be found [here](https://github.com/google/proto
 
 
 # Release notes
+
+## 1.1.2
+
+### New Features
+
+* iOS 10 support;
 
 ## 1.1.1
 

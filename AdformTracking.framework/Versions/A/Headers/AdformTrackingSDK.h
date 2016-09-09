@@ -19,6 +19,13 @@
 @property (nonatomic, assign, readonly, getter=isEnabled) BOOL enabled;
 
 /**
+ Enables or disables AdformTrackingSDK.
+ 
+ @param enabled You can disable the sdk by passing FALSE or enable with TRUE.
+ */
+- (void)setEnabled:(BOOL)enabled;
+
+/**
  Identifies is sim card state tracking is enabled.
  
  @important On iPhones running iOS 6 SIM card state may be inacurate. Because
@@ -28,9 +35,48 @@
 @property (nonatomic, assign, readonly, getter=isSendSimCardStateEnabled) BOOL sendSimCardStateEnabled;
 
 /**
+ Enables or disables SIM card state information sending.
+ 
+ If set to true SDK will track if SIM card is inserted to device or not.
+ Default value - false.
+ 
+ @important On iPhones running iOS 6 SIM card state may be inacurate. Because
+ the device retains SIM card information until it is restarted
+ even if the card was removed.
+ 
+ @param enabled If true - enables SIM card state tracking if false - disables it.
+ 
+ */
+- (void)setSendSimCardStateEnabled:(BOOL)enabled;
+
+/**
  Identifies if sdk is using HTTPS protocol for network communications.
  */
 @property (nonatomic, assign, readonly, getter=isHTTPSEnabled) BOOL HTTPSEnabled;
+
+/**
+ Enables or disables HTTPS support.
+ 
+ By default sdk uses HTTPS because that is required by Apple on iOS 9+ platforms.
+ It is not recomended, but you can use this method to disable HTTPS.
+ */
+- (void)setHTTPSEnabled:(BOOL)HTTPSEnabled;
+
+/**
+ Identifies if the use of safari view controller to send tracking data to server is enabled.
+ 
+ Default value - false.
+ */
+@property (nonatomic, assign, readonly, getter=isSafariControllerEnabled) BOOL safariConrollerEnabled;
+
+/**
+ Enables or disables the use of safari view controller to send tracking data to server.
+ 
+ @param enabled You can enable the use of safari view controller by passing true.
+ */
+- (void)setSafariConrollerEnabled:(BOOL)enabled;
+
+
 
 /**
  Creates and returns a singleton value.
@@ -40,28 +86,6 @@
  @return A shared AdformTrackingSDK instance.
  */
 + (AdformTrackingSDK *)sharedInstance;
-
-/**
- Enables or disables AdformTrackingSDK.
- 
- @param enabled You can disable the sdk by passing FALSE or enable with TRUE.
- */
-- (void)setEnabled:(BOOL)enabled;
-
-/**
- Enables or disables SIM card state information sending.
- 
- If set to true SDK will track if SIM card is inserted to device or not.
- Default value - false.
- 
- @important On iPhones running iOS 6 SIM card state may be inacurate. Because
-    the device retains SIM card information until it is restarted 
-    even if the card was removed.
- 
- @param enabled If true - enables SIM card state tracking if false - disables it.
- 
- */
-- (void)setSendSimCardStateEnabled:(BOOL)enabled;
 
 /**
  Begins tracking.
@@ -122,14 +146,6 @@
  @return YES if the call was intended for AdformTrackingSDK, else NO.
  */
 - (BOOL )applicationOpenUrl:(NSURL *)url sourceApplication:(NSString *)sourceApplication;
-
-/**
- Enables or disables HTTPS support.
- 
- By default sdk uses HTTPS because that is required by Apple on iOS 9+ platforms.
- It is not recomended, but you can use this method to disable HTTPS.
- */
-- (void)setHTTPSEnabled:(BOOL)HTTPSEnabled;
 
 
 //Deprecated
