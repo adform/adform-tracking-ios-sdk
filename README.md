@@ -26,6 +26,13 @@ The use of Adform Tracking SDK requires the following:
 
 [**Please folow Migration guide below if you are updating SDK to version 1.0.**](adform-tracking-ios-sdk#upgrading-to-10)
 
+### 1.1. Plugins
+
+Tracking SDK is also available on these platforms:
+
+* ***[Unity](https://github.com/adform/adform-tracking-sdk-unity-plugin)***
+* ***[Xamarin](https://github.com/adform/adform-tracking-sdk-xamarin/wiki/xamarin-ios-integration-guide)*** 
+
 ## 2. Integration
 
 ### 2.1. Using CocoaPods
