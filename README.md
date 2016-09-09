@@ -3,18 +3,6 @@
 When you run mobile campaigns, boost of new app installs are often one of the main goals. We are happy to announce that today we are launching app installs solution for iOS and Android devices. Easy to install SDK will enable campaign app installs tracking and reporting in Adform platform without need to deal with 3rd party SDKs and invest tons of time into that.
 
 
-# iOS 10 support
-
-In iOS 10, before you access privacy-sensitive data like Camera, Contacts, and so on, 
-you must ask for the authorization. You can do this, by providing usage description
-in application info plist file. Adform tracking sdk requires `NSLocationWhenInUseUsageDescription`,
-`NSPhotoLibraryUsageDescription` and `NSCalendarsUsageDescription` keys to be defined to work properly. You should 
-set their values as defined bellow.
-
-1. NSLocationWhenInUseUsageDescription - Your location is used to show relevant ads nearby.
-2. NSCalendarsUsageDescription - Event will be added to your calendar from the ad.
-3. NSPhotoLibraryUsageDescription - Photo library will be used to store a picture from the ad.
-
 ## 1. General Info
 
 The use of Adform Tracking SDK requires the following:
