@@ -331,7 +331,8 @@ By default AdformTracking sdk uses HTTPS protocol for network comunnications, bu
 
 By default Adform Tracking SDK uses a web view to send tracking information to the server,
 but it is possible to enable the use of SFSafariViewController, which significantly improves tracking accuracy. Just a note, that according to Apple policies SFSafariViewController may not be hidden or obscured by other views or layers and as Tracking SDK runs in background, this could be a reason why app could be rejected in iTunes store during review. 
-Example below shows you how to do it:
+
+Example below shows how to enable SFSafariViewController:
 
 ````objc
 	[[AdformTrackingSDK sharedInstance] setSafariConrollerEnabled:true];
