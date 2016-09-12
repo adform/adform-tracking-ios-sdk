@@ -67,14 +67,14 @@
  
  Default value - false.
  */
-@property (nonatomic, assign, readonly, getter=isSafariControllerEnabled) BOOL safariConrollerEnabled;
+@property (nonatomic, assign, readonly, getter=isSafariControllerEnabled) BOOL safariControllerEnabled;
 
 /**
  Enables or disables the use of safari view controller to send tracking data to server.
  
  @param enabled You can enable the use of safari view controller by passing true.
  */
-- (void)setSafariConrollerEnabled:(BOOL)enabled;
+- (void)setSafariControllerEnabled:(BOOL)enabled;
 
 
 
