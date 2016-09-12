@@ -323,7 +323,7 @@ but it is possible to enable the use of SFSafariViewController, which significan
 Example below shows how to enable SFSafariViewController:
 
 ````objc
-	[[AdformTrackingSDK sharedInstance] setSafariConrollerEnabled:true];
+	[[AdformTrackingSDK sharedInstance] setSafariControllerEnabled:true];
 ````
 
 # Migration guide
