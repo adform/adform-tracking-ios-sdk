@@ -1,6 +1,6 @@
 # Getting Started
 
-When you run mobile campaigns, boost of new app installs are often one of the main goals. We are happy to announce that today we are launching app installs solution for iOS and Android devices. Easy to install SDK will enable campaign app installs tracking and reporting in Adform platform without need to deal with 3rd party SDKs and invest tons of time into that.
+When you run mobile campaigns, boost of new app installs are often one of the main goals. Adform easy to install Tracking SDK will enable campaign app installs tracking and reporting in Adform platform without need to deal with 3rd party SDKs and invest tons of time into that.
 
 
 ## 1. General Info
@@ -12,7 +12,7 @@ The use of Adform Tracking SDK requires the following:
 * Requires deployment target 7.0 or later.
 * Requires ARC to be enabled. 
 
-[**Please folow Migration guide below if you are updating SDK to version 1.0.**](adform-tracking-ios-sdk#upgrading-to-10)
+[**Please folow Migration guide below if you are updating SDK to version 1.0.**](https://github.com/adform/adform-tracking-ios-sdk#upgrading-to-10)
 
 ### 1.1. Plugins
 
