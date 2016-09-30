@@ -111,8 +111,8 @@ Thats it! You are ready to go. Now in Adform system will see default tracking po
 
     // You also can set other custom variables.
     [order setCustomVariable:@"var1" forKey:1];
-    [order setSystemVariables:@"sysVar1" forKey:1];
-    [order setNumericSystemVariables:@(123.45) forKey:1];
+    [order setSystemVariable:@"sysVar1" forKey:1];
+    [order setNumericSystemVariable:@(123.45) forKey:1];
 
     [[AdformTrackingSDK sharedInstance] setOrder:order];
 
