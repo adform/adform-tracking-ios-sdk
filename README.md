@@ -344,6 +344,12 @@ Instructions on how to do it can be found [here](https://github.com/google/proto
 
 ### Bug fixes
 
+* Fixed issue when UIWebView was called from background thread;
+
+## 1.1.3
+
+### Bug fixes
+
 * Fixed a typo;
 
 ## 1.1.2
