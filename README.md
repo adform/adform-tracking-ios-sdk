@@ -340,7 +340,13 @@ Instructions on how to do it can be found [here](https://github.com/google/proto
 
 # Release notes
 
-## 1.1.3
+## 1.1.5
+
+### New Features
+
+* Now SDK uses newest version of Protobuf library.
+
+## 1.1.4
 
 ### Bug fixes
 
