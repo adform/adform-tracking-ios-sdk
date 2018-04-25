@@ -74,7 +74,6 @@ For more information about CocoaPods visit [CocoaPods site](http://cocoapods.org
    * **CoreData.framework**
    * **SystemConfiguration.framework**
    * **CoreTelephony.framework**
-   * **SafariServices.framework**
 
 ![alt tag](Screenshots/frameworks.png)
 
@@ -315,16 +314,6 @@ By default AdformTracking sdk uses HTTPS protocol for network comunnications, bu
 	[[AdformTrackingSDK sharedInstance] setHTTPSEnabled:false];
 ````
 
-## 11. The use of SFSafariViewController
-
-By default Adform Tracking SDK uses a web view to send tracking information to the server,
-but it is possible to enable the use of SFSafariViewController, which significantly improves tracking accuracy. Just a note, that according to Apple policies SFSafariViewController may not be hidden or obscured by other views or layers and as Tracking SDK runs in background, this could be a reason why app could be rejected in iTunes store during review. 
-
-Example below shows how to enable SFSafariViewController:
-
-````objc
-	[[AdformTrackingSDK sharedInstance] setSafariControllerEnabled:true];
-````
 
 # Migration guide
 
@@ -337,8 +326,17 @@ Instructions on how to do it can be found [here](https://github.com/google/proto
 * `TrackPoint` class have been renamed to `AFTrackPoint`.
 * `getParameters`, `addParameter:withValue:` and `setParameters:` methods of `AFTrackPoint` and `AdformAdvertisingSDK` classes have been deprecated. Instead of them to set custom variables to tracking points you should use `setOrder:` method and `AFOrder` class.
 
+## Upgrading to 1.2.0
+
+`SafariServices` framework dependency is no longer needed by the SDK.
 
 # Release notes
+
+## 1.2.0
+
+### New Features
+
+* Removed usage of SFSafariViewController.
 
 ## 1.1.5
 
