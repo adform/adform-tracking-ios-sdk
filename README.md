@@ -314,6 +314,21 @@ By default AdformTracking sdk uses HTTPS protocol for network comunnications, bu
 	[[AdformTrackingSDK sharedInstance] setHTTPSEnabled:false];
 ````
 
+## 11. GDPR
+
+By default Adform Tracking SDK will check CMP settings and use that information. More information about this [here](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/Mobile%20In-App%20Consent%20APIs%20v1.0%20Draft%20for%20Public%20Comment.md)
+
+It is possible to set GDPR and GDPR consent manually. You need to use `setGdpr:` and `setGDPRConsent:` methods. For GDPR consent you need to set base64-encoded string.
+
+Example:
+
+```objc
+[[AdformTrackingSDK sharedInstance] setGDPR:@(true)];
+
+NSString *encodedGDPRConsent = [[@"GgdprConsent" dataUsingEncoding:NSUTF8StringEncoding] base64EncodedStringWithOptions:0];
+[[AdformTrackingSDK sharedInstance] setGDPRConsent:encodedGDPRConsent];
+```
+
 
 # Migration guide
 
@@ -331,6 +346,12 @@ Instructions on how to do it can be found [here](https://github.com/google/proto
 `SafariServices` framework dependency is no longer needed by the SDK.
 
 # Release notes
+
+## 1.3.0
+
+### New Features
+
+* Added GDPR support. More info in GDPR section.
 
 ## 1.2.0
 
