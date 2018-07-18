@@ -347,6 +347,12 @@ Instructions on how to do it can be found [here](https://github.com/google/proto
 
 # Release notes
 
+## 1.3.1
+
+### Bug fixes
+
+* Fixed database initialization error issues that affected some users;
+
 ## 1.3.0
 
 ### New Features
