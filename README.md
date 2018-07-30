@@ -316,7 +316,7 @@ By default AdformTracking sdk uses HTTPS protocol for network comunnications, bu
 
 ## 11. GDPR
 
-By default Adform Tracking SDK will check CMP settings and use that information. More information about this [here](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/Mobile%20In-App%20Consent%20APIs%20v1.0%20Draft%20for%20Public%20Comment.md)
+By default Adform Tracking SDK will check CMP settings and use that information. More information about this [here](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/Mobile%20In-App%20Consent%20APIs%20v1.0%20Final.md)
 
 It is possible to set GDPR and GDPR consent manually. You need to use `setGdpr:` and `setGDPRConsent:` methods. For GDPR consent you need to set base64-encoded string.
 
