@@ -167,6 +167,19 @@
  */
 - (NSString *)GDPRConsent;
 
+/**
+ A user agent that is set to all tracking requests. If nil is set, then default user agent is used.
+
+ @param customUserAgent A new custom user agent to set. You may pass nil to cleat old value and use a default user agent.
+ */
+- (void)setCustomUserAgent:(NSString *)customUserAgent;
+
+/**
+ A user agent that is set to all tracking requests. If nil is set, then default user agent is used.
+
+ @return Custom user agent that was set previously.
+ */
+- (NSString *)customUserAgent;
 
 //Deprecated
 
