@@ -68,6 +68,7 @@ For more information about CocoaPods visit [CocoaPods site](http://cocoapods.org
 
 ![alt tag](Screenshots/copy.png)
 
+* Then select **AdformTracking.framework** in project navigator, go to file inspector and add it to your applications target (Target Membership).
 * Go to your application target’s configuration > General > Linked Frameworks and Libraries section and add these frameworks to your project:
 
    * **AdSupport.framework**
