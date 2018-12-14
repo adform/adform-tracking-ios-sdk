@@ -7,9 +7,8 @@ When you run mobile campaigns, boost of new app installs are often one of the ma
 
 The use of Adform Tracking SDK requires the following:
 
-* Xcode 7.0 or later.
-* iOS SDK 7.0 or later.
-* Requires deployment target 7.0 or later.
+* Xcode 9.0 or later.
+* Requires deployment target 8.0 or later.
 * Requires ARC to be enabled. 
 
 [**Please folow Migration guide below if you are updating SDK to version 1.0.**](https://github.com/adform/adform-tracking-ios-sdk#upgrading-to-10)
@@ -25,37 +24,27 @@ Tracking SDK is also available on these platforms:
 
 ### 2.1. Using CocoaPods
 
-Adform Tracking SDK is now available via CocoaPods. CocoaPods is a very popular Objective-C dependency management tool. 
+Adform Tracking SDK is available via [CocoaPods](https://cocoapods.org/). To integrate SDK using CocoaPods, you need to edit `Podfile` and specify the `AdformTracking` pod.
 
-* To use CocoaPods, you should first install the CocoaPods Ruby Gem (CocoaPods is built with Ruby):
-
-````
-$ sudo gem install cocoapods
-````
-
-* Next, you need to create a `Podfile`, which describes what dependencies you project has. This file should be placed in your project directory. 
-
-````
-$ pod init
-````
-
-* Next, edit `Podfile` and add the platform identifier and the list of libraries you want to use in the project. 
-
-````
-platform: ios
-
-pod 'AdformTracking'
-````
-
-* Finally, you have to install the selected libraries.
-
-````
-pod install
-````
-Thats it!
+```
+pod 'AdformTracking', '~> 1.3.3'
+```
 
 For more information about CocoaPods visit [CocoaPods site](http://cocoapods.org/about).
 
+### 2.3. Using Carthage
+
+Adform Tracking SDK is available via Carthage. To integrate SDK using Carthage, you need to specify it in `Cartfile`.
+
+```
+binary "https://raw.githubusercontent.com/adform/adform-tracking-ios-sdk/master/AdformTracking.json" ~> 1.3.3
+```
+
+For more information about Carthage visit [Carthage site](https://github.com/Carthage/Carthage).
+
+* Adform Tracking SDK uses Protocol Buffers - Google's data interchange format. 
+Therefore you need to import Protobuf library to your project. You should use [3.0.0-beta-3.1 version](https://github.com/google/protobuf/releases/tag/v3.0.0-beta-3.1) or newer version of the library. 
+Instructions on how to integrate it can be found [here](https://github.com/google/protobuf/tree/master/objectivec#building).
 
 ### 2.2. Manual
 
@@ -69,22 +58,14 @@ For more information about CocoaPods visit [CocoaPods site](http://cocoapods.org
 ![alt tag](Screenshots/copy.png)
 
 * Then select **AdformTracking.framework** in project navigator, go to file inspector and add it to your applications target (Target Membership).
-* Go to your application target’s configuration > General > Linked Frameworks and Libraries section and add these frameworks to your project:
-
-   * **AdSupport.framework**
-   * **CoreData.framework**
-   * **SystemConfiguration.framework**
-   * **CoreTelephony.framework**
-
-![alt tag](Screenshots/frameworks.png)
 
 * Adform Tracking SDK uses Protocol Buffers - Google's data interchange format. 
-Therefore you need to import Protobuf library to your project. You should use [3.0.0-beta-3.1 version](https://github.com/google/protobuf/releases/tag/v3.0.0-beta-3.1) of the library. 
+Therefore you need to import Protobuf library to your project. You should use [3.0.0-beta-3.1 version](https://github.com/google/protobuf/releases/tag/v3.0.0-beta-3.1) or newer version of the library. 
 Instructions on how to integrate it can be found [here](https://github.com/google/protobuf/tree/master/objectivec#building).
 
 ## 3. Basic Adform Tracking SDK implementation
 
-* Import `AdformTracking/AdformTracking.h` in `AppDelegate.h`
+* Import `AdformTracking` in `AppDelegate.h`
 
 * In `application:didFinishLaunchingWithOptions:` method call `startTracking:` method with your Client Tracking ID. This method should be called only one time, when app starts.
 
@@ -121,7 +102,7 @@ Thats it! You are ready to go. Now in Adform system will see default tracking po
 
 ## 4. Custom Adform Tracking SDK implementations
 
-* For sending custom tracking events manually you need to import `AdformTracking/AdformTracking.h` in any class you want to send events from, in provided example we use `ViewController.h`.
+* For sending custom tracking events manually you need to import `AdformTracking` in any class you want to send events from, in provided example we use `ViewController.h`.
 
 * Create an `AFTrackPoint` instance with your client `Tracking_ID`. After that you can set tracking point name, custom variables and finally send the tracking point. 
 
