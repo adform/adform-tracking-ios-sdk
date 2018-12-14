@@ -2,6 +2,8 @@
 
 When you run mobile campaigns, boost of new app installs are often one of the main goals. Our easy to install Tracking SDK will enable campaign app installs tracking and reporting in Adform platform without need to deal with 3rd party SDKs and invest tons of time into that.
 
+***If you have any issues or suggestions please contact mobile-sdk@adform.com***
+
 
 ## 1. General Info
 
