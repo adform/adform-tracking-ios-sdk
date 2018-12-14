@@ -9,6 +9,7 @@
 
 @class AFTrackPoint, AFOrder;
 
+NS_ASSUME_NONNULL_BEGIN
 @interface AdformTrackingSDK : NSObject
 
 /**
@@ -112,12 +113,13 @@
  
  @param applicationName A string with custom applicationName.
  */
-- (void)setAppName:(NSString *)applicationName;
+- (void)setAppName:(nullable NSString *)applicationName;
 
 /**
  Adds custom parameters for initial tracking points ("Start" and "Download").
+ You can set nil to remove a previously set order.
  */
-- (void)setOrder:(AFOrder *)order;
+- (void)setOrder:(nullable AFOrder *)order;
 
 /**
  Used to proccess the url that opend the application to handle deep linking and interactions with SDK.
@@ -129,14 +131,14 @@
  
  @return YES if the call was intended for AdformTrackingSDK, else NO.
  */
-- (BOOL )applicationOpenUrl:(NSURL *)url sourceApplication:(NSString *)sourceApplication;
+- (BOOL )applicationOpenUrl:(NSURL *)url sourceApplication:(nullable NSString *)sourceApplication;
 
 /**
  You can use this method to manually specifying if GDPR is applied.
  Must be a BOOL value wraped in a NSNumber.
  You can pass in null to clear a previouslt set value.
  */
-- (void)setGDPR:(NSNumber *)isSubject;
+- (void)setGDPR:(nullable NSNumber *)isSubject;
 
 /**
  Returns a currently set is GDPR subject value.
@@ -147,14 +149,14 @@
 
  Returns nil if no value was found or set manually.
  */
-- (NSNumber *)isSubjectToGDPR;
+- (nullable NSNumber *)isSubjectToGDPR;
 
 /**
  You can use this method to manually set the GDPR consent value.
  It should be a base64 encoded string containing vendor and purpose consent.
  You can pass in null to clear a previouslt set value.
  */
-- (void)setGDPRConsent:(NSString *)consent;
+- (void)setGDPRConsent:(nullable NSString *)consent;
 
 /**
  Returns a currently set GDPR consent value.
@@ -165,27 +167,31 @@
 
  Returns nil if no value was found or set manually.
  */
-- (NSString *)GDPRConsent;
+- (nullable NSString *)GDPRConsent;
 
 /**
  A user agent that is set to all tracking requests. If nil is set, then default user agent is used.
 
  @param customUserAgent A new custom user agent to set. You may pass nil to cleat old value and use a default user agent.
  */
-- (void)setCustomUserAgent:(NSString *)customUserAgent;
+- (void)setCustomUserAgent:(nullable NSString *)customUserAgent;
 
 /**
  A user agent that is set to all tracking requests. If nil is set, then default user agent is used.
 
  @return Custom user agent that was set previously.
  */
-- (NSString *)customUserAgent;
+- (nullable NSString *)customUserAgent;
+
+@end
+
+@interface AdformTrackingSDK ()
 
 //Deprecated
 
 /**
  Adds custom parameter for initial tracking points ("Start" and "Download").
- 
+
  @param key A key for a parameter.
  @param parameter A parameter for a key.
  */
@@ -193,9 +199,10 @@
 
 /**
  Sets multiple custom parameters for initial tracking points ("Start" and "Download").
- 
+
  @param parameters A dictionary containing parameters.
  */
 - (void)setParameters:(NSDictionary *)parameters __deprecated_msg("To add custom parameters to trackpoint use 'setOrder:' instead!");
 
 @end
+NS_ASSUME_NONNULL_END

@@ -9,6 +9,7 @@
 
 @class AFProduct, AFOrder;
 
+NS_ASSUME_NONNULL_BEGIN
 @interface AFTrackPoint : NSObject
 
 /**
@@ -35,27 +36,27 @@
  
  @return A string with section name or nil if none was set.
  */
-- (NSString *)getSectionName;
+- (nullable NSString *)getSectionName;
 
 /**
  Returns a custom application name set to the tracking point.
  
  @return A string with custom application name or nil if none was set.
  */
-- (NSString *)getAppName;
+- (nullable NSString *)getAppName;
 
 /**
  Returns an array of products assigned to this track point.
  
  @return An array with products or nil if none were set.
  */
-- (NSArray *)products;
+- (nullable NSArray *)products;
 
 /**
  Returns an AFOrder object containing additional traking information and custom parameters.
  May be nil if order was not set yet.
  */
-- (AFOrder *)order;
+- (nullable AFOrder *)order;
 
 
 // Setters
@@ -65,14 +66,14 @@
  
  @param applicationName A custom application name to be set to the track point.
  */
-- (void)setAppName:(NSString *)applicationName;
+- (void)setAppName:(nullable NSString *)applicationName;
 
 /**
  Sets section name to the track point.
  
  @parmater sectionName A string with section name.
  */
-- (void)setSectionName:(NSString *)sectionName;
+- (void)setSectionName:(nullable NSString *)sectionName;
 
 /**
  Sets an array of products to track point.
@@ -81,7 +82,7 @@
  
  @param products An array of products to set.
  */
-- (void)setProducts:(NSArray *)products;
+- (void)setProducts:(nullable NSArray *)products;
 
 /**
  Assigns a single product to track point.
@@ -96,7 +97,7 @@
  Sets an AFOrder object containing additional traking information and custom parameters.
  You can set nil to remove a previously set order.
  */
-- (void)setOrder:(AFOrder *)order;
+- (void)setOrder:(nullable AFOrder *)order;
 
 
 //Deprecated
@@ -124,3 +125,4 @@
 - (void)setParameters:(NSDictionary *)parameters __deprecated_msg("To add custom parameters to trackpoint use 'setOrder:' instead!");
 
 @end
+NS_ASSUME_NONNULL_END

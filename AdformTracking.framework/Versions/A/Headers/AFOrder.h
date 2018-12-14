@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
 /**
  Defines an order object.
  
@@ -16,7 +17,7 @@
 @interface AFOrder : NSObject
 
 /// Order ID
-@property (nonatomic, strong) NSString *orderId;
+@property (nonatomic, strong, nullable) NSString *orderId;
 
 /// Sale price
 @property (nonatomic, assign) float sale;
@@ -25,24 +26,24 @@
 @property (nonatomic, assign) NSInteger basketSize;
 
 /// Order currency code
-@property (nonatomic, strong) NSString *currency;
+@property (nonatomic, strong, nullable) NSString *currency;
 
 /// Order status
-@property (nonatomic, strong) NSString *orderStatus;
+@property (nonatomic, strong, nullable) NSString *orderStatus;
 
 /// User contact information
-@property (nonatomic, strong) NSString *firstName;
-@property (nonatomic, strong) NSString *lastName;
-@property (nonatomic, strong) NSString *country;
-@property (nonatomic, strong) NSString *address1;
-@property (nonatomic, strong) NSString *address2;
-@property (nonatomic, strong) NSString *zip;
-@property (nonatomic, strong) NSString *email;
-@property (nonatomic, strong) NSString *phone;
+@property (nonatomic, strong, nullable) NSString *firstName;
+@property (nonatomic, strong, nullable) NSString *lastName;
+@property (nonatomic, strong, nullable) NSString *country;
+@property (nonatomic, strong, nullable) NSString *address1;
+@property (nonatomic, strong, nullable) NSString *address2;
+@property (nonatomic, strong, nullable) NSString *zip;
+@property (nonatomic, strong, nullable) NSString *email;
+@property (nonatomic, strong, nullable) NSString *phone;
 
 /// User demographic information
-@property (nonatomic, strong) NSString *gender;
-@property (nonatomic, strong) NSString *ageGroup;
+@property (nonatomic, strong, nullable) NSString *gender;
+@property (nonatomic, strong, nullable) NSString *ageGroup;
 
 
 /** 
@@ -51,7 +52,7 @@
  Up to 10 variables are supported, therefore you may only use keys from range [1, 10].
  For convenience you may use 'setCustomVariable:forKey:' methods.
 */
-@property (nonatomic, strong) NSMutableDictionary<NSNumber *, NSString *> *customVariables;
+@property (nonatomic, strong, nullable) NSMutableDictionary<NSNumber *, NSString *> *customVariables;
 
 /**
  Sets custom variable to an order.
@@ -61,7 +62,7 @@
  @param variable A value of the variable. May be nil.
  @param key A key used to associate the variable with. Must be in range [1, 10].
  */
-- (void)setCustomVariable:(NSString *)variable forKey:(NSInteger )key;
+- (void)setCustomVariable:(nullable NSString *)variable forKey:(NSInteger )key;
 
 /** 
  System variables that are visible in reports.
@@ -69,7 +70,7 @@
  Up to 255 variables are supported, therefore you may only use keys from range [1, 255].
  For convenience you may use 'setSystemVariable:forKey:' methods.
  */
-@property (nonatomic, strong) NSMutableDictionary<NSNumber *, NSString *> *systemVariables;
+@property (nonatomic, strong, nullable) NSMutableDictionary<NSNumber *, NSString *> *systemVariables;
 
 /**
  Sets system variable to an order.
@@ -79,7 +80,7 @@
  @param variable A value of the variable. May be nil.
  @param key A key used to associate the variable with. Must be in range [1, 255].
  */
-- (void)setSystemVariable:(NSString *)variable forKey:(NSInteger )key;
+- (void)setSystemVariable:(nullable NSString *)variable forKey:(NSInteger )key;
 
 /**
  Numeric system variables that are visible in reports.
@@ -87,7 +88,7 @@
  Up to 255 variables are supported, therefore you may only use keys from range [1, 255].
  For convenience you may use 'setNumericSystemVariable:forKey:' methods.
  */
-@property (nonatomic, strong) NSMutableDictionary<NSNumber *, NSNumber *> *numericSystemVariables;
+@property (nonatomic, strong, nullable) NSMutableDictionary<NSNumber *, NSNumber *> *numericSystemVariables;
 
 /**
  Sets numeric system variable to an order.
@@ -97,6 +98,7 @@
  @param variable A value of the variable. May be nil.
  @param key A key used to associate the variable with. Must be in range [1, 255].
  */
-- (void)setNumericSystemVariable:(NSNumber *)variable forKey:(NSInteger )key;
+- (void)setNumericSystemVariable:(nullable NSNumber *)variable forKey:(NSInteger )key;
 
 @end
+NS_ASSUME_NONNULL_END

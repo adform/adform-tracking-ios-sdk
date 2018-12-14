@@ -10,6 +10,7 @@
 
 @class AFProduct, AFOrder, AFTrackPoint;
 
+NS_ASSUME_NONNULL_BEGIN
 /**
  Track points builder used to simplify trackpoint creation for multiple tracking point ids.
  
@@ -24,19 +25,19 @@
 /**
  Custom application name used to construct track points.
  */
-@property (nonatomic, strong) NSString *applicationName;
+@property (nonatomic, strong, nullable) NSString *applicationName;
 /**
  Section name used to construct track points.
  */
-@property (nonatomic, strong) NSString *sectionName;
+@property (nonatomic, strong, nullable) NSString *sectionName;
 /**
  An array of products used to construct track points.
  */
-@property (nonatomic, strong) NSArray <AFProduct *> *products;
+@property (nonatomic, strong, nullable) NSArray <AFProduct *> *products;
 /**
  AFOrder object containing additional traking information and custom parameters used to construct track points.
  */
-@property (nonatomic, strong) AFOrder *order;
+@property (nonatomic, strong, nullable) AFOrder *order;
 
 /**
  Initializes a new AFTrackPointsBuilder instance with provided parameters.
@@ -47,10 +48,10 @@
  @param order AFOrder object containing additional traking information and custom parameters.
  @param trackpointIds An array of tracking point ids.
  */
-- (instancetype)initWithAppName:(NSString *)appName
-                    sectionName:(NSString *)sectionName
-                       products:(NSArray <AFProduct *> *)products
-                          order:(AFOrder *)order
+- (instancetype)initWithAppName:(nullable NSString *)appName
+                    sectionName:(nullable NSString *)sectionName
+                       products:(nullable NSArray <AFProduct *> *)products
+                          order:(nullable AFOrder *)order
                   trackPointIds:(NSArray <NSNumber *> *)trackpointIds;
 
 /**
@@ -61,3 +62,4 @@
 - (NSArray <AFTrackPoint *> *)build;
 
 @end
+NS_ASSUME_NONNULL_END

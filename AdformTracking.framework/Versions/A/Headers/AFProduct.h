@@ -38,6 +38,8 @@ typedef NS_ENUM(NSInteger, AFEcomerceStep) {
     AFEcomerceStepPurchase = 3
 };
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Defines a product object.
  
@@ -48,22 +50,22 @@ typedef NS_ENUM(NSInteger, AFEcomerceStep) {
 /**
  The name name of the product category.
  */
-@property (nonatomic, strong) NSString *categoryName;
+@property (nonatomic, strong, nullable) NSString *categoryName;
 
 /**
  The id of the product category.
  */
-@property (nonatomic, strong) NSString *categoryId;
+@property (nonatomic, strong, nullable) NSString *categoryId;
 
 /**
  The product name.
  */
-@property (nonatomic, strong) NSString *productName;
+@property (nonatomic, strong, nullable) NSString *productName;
 
 /**
  The product id.
  */
-@property (nonatomic, strong) NSString *productId;
+@property (nonatomic, strong, nullable) NSString *productId;
 
 /**
  The product weight.
@@ -90,17 +92,18 @@ typedef NS_ENUM(NSInteger, AFEcomerceStep) {
 /**
  Additional information that may be associated to the product.
  */
-@property (nonatomic, strong) NSString *custom;
+@property (nonatomic, strong, nullable) NSString *custom;
 
 
-- (instancetype)initWithCategoryName:(NSString *)categoryName
-                          categoryId:(NSString *)categoryId
-                         productName:(NSString *)productName
-                           productId:(NSString *)productId
+- (instancetype)initWithCategoryName:(nullable NSString *)categoryName
+                          categoryId:(nullable NSString *)categoryId
+                         productName:(nullable NSString *)productName
+                           productId:(nullable NSString *)productId
                               weight:(NSInteger )weight
                                 step:(NSInteger )step
                         productSales:(float )productSales
                         productCount:(NSInteger )productCount
-                              custom:(NSString *)custom;
+                              custom:(nullable NSString *)custom;
 
 @end
+NS_ASSUME_NONNULL_END
