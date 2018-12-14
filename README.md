@@ -338,6 +338,12 @@ Instructions on how to do it can be found [here](https://github.com/google/proto
 
 # Release notes
 
+## 1.3.3
+
+### New Features
+
+* Ad support for Carthage.
+
 ## 1.3.2
 
 ### New Features
