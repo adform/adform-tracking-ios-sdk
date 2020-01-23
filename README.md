@@ -340,6 +340,12 @@ Instructions on how to do it can be found [here](https://github.com/google/proto
 
 # Release notes
 
+## 1.4.0
+
+### New Features
+
+* IAB Transparent Consent Framework 2.0 support.
+
 ## 1.3.3
 
 ### New Features

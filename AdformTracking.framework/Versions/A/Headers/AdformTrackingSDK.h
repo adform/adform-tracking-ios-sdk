@@ -122,18 +122,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setOrder:(nullable AFOrder *)order;
 
 /**
- Used to proccess the url that opend the application to handle deep linking and interactions with SDK.
- 
- Must be called in [UIApplicationDelegate application:openURL:sourceApplication:annotation:].
- 
- @param url URL that was passed in [UIApplicationDelegate application:openURL:sourceApplication:annotation:] method.
- @param sourceApplication sourceApplication that was passed in [UIApplicationDelegate application:openURL:sourceApplication:annotation:] method.
- 
- @return YES if the call was intended for AdformTrackingSDK, else NO.
- */
-- (BOOL )applicationOpenUrl:(NSURL *)url sourceApplication:(nullable NSString *)sourceApplication;
-
-/**
  You can use this method to manually specifying if GDPR is applied.
  Must be a BOOL value wraped in a NSNumber.
  You can pass in null to clear a previouslt set value.
@@ -183,26 +171,30 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (nullable NSString *)customUserAgent;
 
+/// Used to proccess the url that opend the application to handle deep linking and interactions with SDK.
+///
+/// Must be called in [UIApplicationDelegate application:openURL:options:].
+///
+/// @param url URL that was passed to [UIApplicationDelegate application:openURL:options:] method.
+/// @param options Options dictionary that was passed to [UIApplicationDelegate application:openURL:options:] method.
+- (BOOL)applicationOpenURL:(NSURL *)url options:(NSDictionary *)options;
+
 @end
 
+//Deprecated
 @interface AdformTrackingSDK ()
 
-//Deprecated
-
 /**
- Adds custom parameter for initial tracking points ("Start" and "Download").
+ Used to proccess the url that opend the application to handle deep linking and interactions with SDK.
 
- @param key A key for a parameter.
- @param parameter A parameter for a key.
+ Must be called in [UIApplicationDelegate application:openURL:sourceApplication:annotation:].
+
+ @param url URL that was passed to [UIApplicationDelegate application:openURL:sourceApplication:annotation:] method.
+ @param sourceApplication sourceApplication that was passed in [UIApplicationDelegate application:openURL:sourceApplication:annotation:] method.
+
+ @return YES if the call was intended for AdformTrackingSDK, else NO.
  */
-- (void)addParameter:(NSString *)key withValue:(NSString *)parameter __deprecated_msg("To add custom parameters to trackpoint use 'setOrder:' instead!");
-
-/**
- Sets multiple custom parameters for initial tracking points ("Start" and "Download").
-
- @param parameters A dictionary containing parameters.
- */
-- (void)setParameters:(NSDictionary *)parameters __deprecated_msg("To add custom parameters to trackpoint use 'setOrder:' instead!");
+- (BOOL )applicationOpenUrl:(NSURL *)url sourceApplication:(nullable NSString *)sourceApplication __deprecated_msg("To add custom parameters to trackpoint use 'setOrder:' instead!");
 
 @end
 NS_ASSUME_NONNULL_END

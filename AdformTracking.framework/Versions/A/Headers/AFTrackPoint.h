@@ -99,30 +99,5 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)setOrder:(nullable AFOrder *)order;
 
-
-//Deprecated
-
-/**
- Returns custom parameters set to the tracking point.
- 
- @return A dictionary with parameters or nil if none were set.
- */
-- (NSDictionary *)getParameters __deprecated_msg("To get custom parameters set to trackpoint use 'order:' instead!");
-
-/**
- Adds a custom parameter to the track point.
- 
- @param key A key for a parameter.
- @param parameter A parameter for a key.
- */
-- (void)addParameter:(NSString *)key withValue:(NSString *)parameter __deprecated_msg("To add custom parameters to trackpoint use 'setOrder:' instead!");
-
-/**
- Sets multiple custom parameters to the track point.
- 
- @param parameters A dictionary containing parameters.
- */
-- (void)setParameters:(NSDictionary *)parameters __deprecated_msg("To add custom parameters to trackpoint use 'setOrder:' instead!");
-
 @end
 NS_ASSUME_NONNULL_END
