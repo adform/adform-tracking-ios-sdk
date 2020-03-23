@@ -344,7 +344,7 @@ Instructions on how to do it can be found [here](https://github.com/google/proto
 
 ### New Features
 
-* Remove UIWebView usage.
+* Migrate UIWebView usage to WKWebView.
 
 ## 1.4.0
 
