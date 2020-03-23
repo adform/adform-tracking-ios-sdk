@@ -340,6 +340,12 @@ Instructions on how to do it can be found [here](https://github.com/google/proto
 
 # Release notes
 
+## 1.5.0
+
+### New Features
+
+* Remove UIWebView usage.
+
 ## 1.4.0
 
 ### New Features

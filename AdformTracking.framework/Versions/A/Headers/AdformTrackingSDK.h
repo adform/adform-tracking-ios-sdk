@@ -194,7 +194,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return YES if the call was intended for AdformTrackingSDK, else NO.
  */
-- (BOOL )applicationOpenUrl:(NSURL *)url sourceApplication:(nullable NSString *)sourceApplication __deprecated_msg("To add custom parameters to trackpoint use 'setOrder:' instead!");
+- (BOOL )applicationOpenUrl:(NSURL *)url sourceApplication:(nullable NSString *)sourceApplication __deprecated_msg("Use 'applicationOpenURL:options:' instead!");
 
 @end
 NS_ASSUME_NONNULL_END
