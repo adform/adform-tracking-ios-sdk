@@ -340,7 +340,7 @@ Instructions on how to do it can be found [here](https://github.com/google/proto
 
 # Release notes
 
-## 1.5.0
+## 1.5.1
 
 ### Bug fixes
 
