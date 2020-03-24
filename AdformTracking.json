@@ -1,5 +1,6 @@
 {
 	"1.3.3": "https://github.com/adform/adform-tracking-ios-sdk/releases/download/v.1.3.3/AdformTracking.framework.zip",
     "1.4.0": "https://github.com/adform/adform-tracking-ios-sdk/releases/download/v.1.4.0/AdformTracking.framework.zip",
-    "1.5.0": "https://github.com/adform/adform-tracking-ios-sdk/releases/download/v.1.5.0/AdformTracking.framework.zip"
+    "1.5.0": "https://github.com/adform/adform-tracking-ios-sdk/releases/download/v.1.5.0/AdformTracking.framework.zip",
+    "1.5.1": "https://github.com/adform/adform-tracking-ios-sdk/releases/download/v.1.5.1/AdformTracking.framework.zip"
 }
