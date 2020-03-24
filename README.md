@@ -342,6 +342,12 @@ Instructions on how to do it can be found [here](https://github.com/google/proto
 
 ## 1.5.0
 
+### Bug fixes
+
+* Fix web view multithreading issue.
+
+## 1.5.0
+
 ### New Features
 
 * Migrate UIWebView usage to WKWebView.
