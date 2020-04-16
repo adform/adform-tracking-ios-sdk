@@ -39,14 +39,17 @@ For more information about CocoaPods visit [CocoaPods site](http://cocoapods.org
 Adform Tracking SDK is available via Carthage. To integrate SDK using Carthage, you need to specify it in `Cartfile`.
 
 ```
-binary "https://raw.githubusercontent.com/adform/adform-tracking-ios-sdk/master/AdformTracking.json" ~> 1.3.3
+github "adform/adform-tracking-ios-sdk"
+```
+
+* Adform Tracking SDK uses Protocol Buffers - Google's data interchange format.
+Therefore you need to import Protobuf library to your project too.
+
+```
+github "adform/protobuf-ios"
 ```
 
 For more information about Carthage visit [Carthage site](https://github.com/Carthage/Carthage).
-
-* Adform Tracking SDK uses Protocol Buffers - Google's data interchange format. 
-Therefore you need to import Protobuf library to your project. You should use [3.0.0-beta-3.1 version](https://github.com/google/protobuf/releases/tag/v3.0.0-beta-3.1) or newer version of the library. 
-Instructions on how to integrate it can be found [here](https://github.com/google/protobuf/tree/master/objectivec#building).
 
 ### 2.2. Manual
 
