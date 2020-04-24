@@ -34,7 +34,7 @@ pod 'AdformTracking', '~> 1.3.3'
 
 For more information about CocoaPods visit [CocoaPods site](http://cocoapods.org/about).
 
-### 2.3. Using Carthage
+### 2.2. Using Carthage
 
 Adform Tracking SDK is available via Carthage. 
 
@@ -55,7 +55,7 @@ github "adform/protobuf-ios"
 
 For more information about Carthage visit [Carthage site](https://github.com/Carthage/Carthage).
 
-### 2.2. Manual
+### 2.3. Manual
 
 * Download latest build version of Adform Tracking SDK.
 * Drag **AdformTracking.framework** to your project.
@@ -72,7 +72,7 @@ For more information about Carthage visit [Carthage site](https://github.com/Car
 Therefore you need to import Protobuf library to your project. You should use [3.0.0-beta-3.1 version](https://github.com/google/protobuf/releases/tag/v3.0.0-beta-3.1) or newer version of the library. 
 Instructions on how to integrate it can be found [here](https://github.com/google/protobuf/tree/master/objectivec#building).
 
-### 2.3. Troubleshooting
+### 2.4. Troubleshooting
 
 * If you get a `missing symbols error`, it may mean that automatic framework linking has failed, in this case try to add `AdSupprt.framework` dependency explicitly in you project.
 
