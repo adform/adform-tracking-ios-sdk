@@ -51,7 +51,7 @@ Therefore you need to import Protobuf library to your project too.
 github "adform/protobuf-ios"
 ```
 
-* Our SDK and Protocol Buffers library are distributed as a static framework. Therefore, you should not add it them input/output files in Carthage copy-frameworks Build Phase.
+* Our SDK and Protocol Buffers library are distributed as static frameworks. Therefore, you should not add them to input/output files in Carthage copy-frameworks Build Phase.
 
 For more information about Carthage visit [Carthage site](https://github.com/Carthage/Carthage).
 
@@ -71,6 +71,15 @@ For more information about Carthage visit [Carthage site](https://github.com/Car
 * Adform Tracking SDK uses Protocol Buffers - Google's data interchange format. 
 Therefore you need to import Protobuf library to your project. You should use [3.0.0-beta-3.1 version](https://github.com/google/protobuf/releases/tag/v3.0.0-beta-3.1) or newer version of the library. 
 Instructions on how to integrate it can be found [here](https://github.com/google/protobuf/tree/master/objectivec#building).
+
+### 2.3. Troubleshooting
+
+* If you get a `missing symbols error`, it may mean that automatic framework linking has failed, in this case try to add `AdSupprt.framework` dependency explicitly in you project.
+
+* If you get a `bundle format unrecognized, invalid, or unsutable` error while integrating the SDK, it probably means one of two problems:
+
+  - That you are integrating SDK with Carthge and have added AdformTracking.framework and ProtocolBuffers.framework to input/output files in Carthage copy-frameworks Build Phase. You should not add these frameworks to copy-frameworks Build Phase.
+  - You have selected `Embed` in Framework and Libraries project configuration. This configuration should be selected to `Do Not Embed`.
 
 ## 3. Basic Adform Tracking SDK implementation
 
