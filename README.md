@@ -76,7 +76,7 @@ Instructions on how to integrate it can be found [here](https://github.com/googl
 
 * If you get a `missing symbols error`, it may mean that automatic framework linking has failed, in this case try to add `AdSupprt.framework` dependency explicitly in you project.
 
-* If you get a `bundle format unrecognized, invalid, or unsutable` error while integrating the SDK, it probably means one of two problems:
+* If you get a `bundle format unrecognized, invalid, or unsuitable` error while integrating the SDK, it probably means one of two problems:
 
   - That you are integrating SDK with Carthge and have added AdformTracking.framework and ProtocolBuffers.framework to input/output files in Carthage copy-frameworks Build Phase. You should not add these frameworks to copy-frameworks Build Phase.
   - You have selected `Embed` in Framework and Libraries project configuration. This configuration should be selected to `Do Not Embed`.
