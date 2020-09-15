@@ -373,6 +373,8 @@ Instructions on how to do it can be found [here](https://github.com/google/proto
 
 # Release notes
 
+## 1.6.0
+
 ### New Features
 
 * IAB CCPA Compliance Framework support.
