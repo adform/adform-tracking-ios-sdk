@@ -48,7 +48,7 @@ class ViewController: UIViewController {
 
         let trackingPoint = AFTrackPoint(trackPoint: trackingPointId)
         trackingPoint.setAppName("CustomAppName")
-        trackingPoint.setSectionName("ValidSectionName")
+        trackingPoint.setSectionName("SectionName")
         trackingPoint.setOrder(order)
 
         AdformTrackingSDK.sharedInstance().send(trackingPoint)
@@ -67,6 +67,7 @@ class ViewController: UIViewController {
                                 custom: "Custom information")
 
         let trackingPoint = AFTrackPoint(trackPoint: trackingPointId)
+        trackingPoint.setSectionName("SectionName")
         trackingPoint.addProduct(product)
 
         AdformTrackingSDK.sharedInstance().send(trackingPoint)
@@ -95,6 +96,7 @@ class ViewController: UIViewController {
                                  custom: "Custom information")
 
         let trackingPoint = AFTrackPoint(trackPoint: trackingPointId)
+        trackingPoint.setSectionName("SectionName")
         trackingPoint.setProducts([product1, product2])
 
         AdformTrackingSDK.sharedInstance().send(trackingPoint)
