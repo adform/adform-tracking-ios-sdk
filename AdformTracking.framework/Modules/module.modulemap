@@ -12,4 +12,5 @@ framework module AdformTracking {
     link framework "AdSupport"
     link framework "CoreData"
     link framework "CoreTelephony"
+    link framework "WebKit"
 }

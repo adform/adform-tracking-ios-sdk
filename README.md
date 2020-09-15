@@ -329,7 +329,24 @@ NSString *encodedGDPRConsent = [[@"GgdprConsent" dataUsingEncoding:NSUTF8StringE
 [[AdformTrackingSDK sharedInstance] setGDPRConsent:encodedGDPRConsent];
 ```
 
-## 12. Custom user-agent
+## 12. US Privacy
+
+By default Adform Tracking SDK will check CMP settings to get US Privacy value. More information about this can be found here:
+
+* [IAB Tech Lab U.S. Privacy String](https://github.com/InteractiveAdvertisingBureau/USPrivacy/blob/master/CCPA/US%20Privacy%20String.md)
+
+* [IAB Tech Lab U.S. Privacy User Signal API](https://github.com/InteractiveAdvertisingBureau/USPrivacy/blob/master/CCPA/USP%20API.md)
+
+It is also possible to set US Privacy value manually. You can do this using  `setUSPrivacy:` method.
+
+Example:
+
+```objc
+NSString *usPrivacy = @"US_PRIVACY";
+[[AdformTrackingSDK sharedInstance] setUSPrivacy:usPrivacy];
+```
+
+## 13. Custom user-agent
 
 Adform Tracking SDK uses web view user-agent as one of the parameters to identify users and perform attribution. In some cases an issue may arise if you are firing some tracking points in your own web view, e.g. you are developing a hibrid application. In these cases attribution may not work because user-agent of your own web view and default web view user-agent used by our SDK may not match. To solve this issue Adform Tracking SDK provides a method to set a custom user agent.
 
@@ -355,6 +372,11 @@ Instructions on how to do it can be found [here](https://github.com/google/proto
 `SafariServices` framework dependency is no longer needed by the SDK.
 
 # Release notes
+
+### New Features
+
+* IAB CCPA Compliance Framework support.
+* Update Framework structure.
 
 ## 1.5.1
 
