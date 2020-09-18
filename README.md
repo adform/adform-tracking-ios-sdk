@@ -424,11 +424,19 @@ if (@available(iOS 14.0, *)) {
 
 * Change framework format to .xcframework.
 
+### Notice
+
+* No carthage support for this version. Carthage doesn't support .xcframework type yet. Use 1.7.0 version if you need carthage support.
+
 ## 1.7.0
 
 ### New Features
 
 * Add iOS 14, AppTrackingTransparency support.
+
+### Notice
+
+* No cocoapods support for this version. Cocoapods require .xcframework type to work with iOS 14, therefore use 1.7.1 version.
 
 ## 1.6.0
 
