@@ -4,6 +4,9 @@ When you run mobile campaigns, boost of new app installs are often one of the ma
 
 ***If you have any issues or suggestions please contact mobile-sdk@adform.com***
 
+## ***Important iOS 14 support***
+
+Apple introduced a new AppTrackingTransparency framework and tracking permission in iOS 14. To support these changes you will need to make couple of small changes in Adfrom Tracking SDK integration. For more information check Migration Guide down bellow.
 
 ## 1. General Info
 
@@ -85,19 +88,37 @@ Instructions on how to integrate it can be found [here](https://github.com/googl
 
 * Import `AdformTracking` in `AppDelegate.h`
 
-* In `application:didFinishLaunchingWithOptions:` method call `startTracking:` method with your Client Tracking ID. This method should be called only one time, when app starts.
+* In `application:didFinishLaunchingWithOptions:` method call `startTracking:waitForPermissions:` method with your Client Tracking ID and `waitForPermissions` `true`. This method should be called only one time, when app starts.
 
 ````objc
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    [[AdformTrackingSDK sharedInstance] startTracking:Tracking_ID];
+    [[AdformTrackingSDK sharedInstance] startTracking:Tracking_ID waitForPermissions:true];
 
     return YES;
 }
 ````
 
+* Then call `requestTrackingPermissions` to get user permission to use Advertising Identifier for tracking. Calling this method will present systemic permission alert. Therefore, it is up to you to decide when it best to show this alert. 
+
+```objc
+if (@available(iOS 14.0, *)) {
+    [[AdformTrackingSDK sharedInstance] requestTrackingPermissions];
+}
+```
+
 Thats it! You are ready to go. Now in Adform system will see default tracking points (Download, Start, Update), when they are triggered.
 
+* Optionally, if you don't want to use Advertising Identifier for tracking, you may not ask user for permissions. In this case you must pass `false` to  `waitForPermissions` when calling `startTracking:waitForPermissions:`.  
+
+````objc
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    [[AdformTrackingSDK sharedInstance] startTracking:Tracking_ID waitForPermissions:false];
+
+    return YES;
+}
+````
 
 * Optionally you can set custom application name and custom variables before calling `startTracking:`.
 
@@ -371,7 +392,34 @@ Instructions on how to do it can be found [here](https://github.com/google/proto
 
 `SafariServices` framework dependency is no longer needed by the SDK.
 
+## Upgrading to 1.7.0
+
+In iOS 14 we need to ask user for permission to use Advertising Identifier for tracking purposes. To do so, you will need to make these changes to SDK integration:
+
+1. Pass in `true` as `waitForPermissions` parameter to `startTracking` method.
+
+```objc
+[[AdformTrackingSDK sharedInstance] startTracking:Tracking_ID waitForPermissions:true];
+```
+
+2. Ask user for permission to access Advertising Identifier using `requestTrackingPermissions` method. Calling this method will present systemic permissions alert, therefore it's up to you to decide when it is most apropriate to show it. 
+
+```objc
+if (@available(iOS 14.0, *)) {
+    [[AdformTrackingSDK sharedInstance] requestTrackingPermissions];
+}
+```
+
+3. Add `NSUserTrackingUsageDescription` entry to your apps `Info.plist` file. 
+
+
 # Release notes
+
+## 1.7.0
+
+### New Features
+
+* Add iOS 14, AppTrackingTransparency support.
 
 ## 1.6.0
 

@@ -73,6 +73,12 @@ NS_ASSUME_NONNULL_BEGIN
 + (AdformTrackingSDK *)sharedInstance;
 
 /**
+ Method to request permission to track user.
+ When callin this method you must provide a NSUserTrackingUsageDescription in apps Info.plist file.
+ */
+- (void)requestTrackingPermissions API_AVAILABLE(ios(14.0));
+
+/**
  Begins tracking.
 
  You should call it right after the application launched in [UIApplicationDelegate application:didFinishLaunchingWithOptions:] method.
@@ -80,8 +86,10 @@ NS_ASSUME_NONNULL_BEGIN
  If you want to send some custom data, you must set it before calling this method.
  
  @param trackingPointId Tracking point id provided to you by Adform.
+ @param waitForPermissions flag to wait for advertisement id usage permission retrieval
  */
-- (void)startTracking:(long )trackingPointId;
+- (void)startTracking:(long )trackingPointId
+   waitForPermissions:(BOOL)waitForPermissions;
 
 /**
  An optional method used to begin tracking with multiple tracking point ids.
@@ -91,8 +99,10 @@ NS_ASSUME_NONNULL_BEGIN
  If you want to send some custom data, you must set it before calling this method.
  
  @param trackingPointIds An array of tracking point ids provided to you by Adform.
+ @param waitForPermissions flag to wait for advertisement id usage permission retrieval
+
  */
-- (void)startTrackingWithIds:(NSArray <NSNumber *> *)trackingPointIds;
+- (void)startTrackingWithIds:(NSArray <NSNumber *> *)trackingPointIds waitForPermissions:(BOOL)waitForPermissions;
 
 /**
  Sends custom tracking point to server.

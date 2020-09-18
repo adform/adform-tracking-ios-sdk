@@ -17,7 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let trackingPointId = 123123 // Tracking point id provided to you by Adform.
         AdformTrackingSDK.sharedInstance().setAppName("DemoApp")
-        AdformTrackingSDK.sharedInstance().startTracking(trackingPointId)
+        AdformTrackingSDK.sharedInstance().startTracking(trackingPointId, waitForPermissions: true)
+        if #available(iOS 14.0, *) {
+            AdformTrackingSDK.sharedInstance().requestTrackingPermissions()
+        }
 
         return true
     }
