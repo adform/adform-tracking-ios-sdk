@@ -418,6 +418,12 @@ if (@available(iOS 14.0, *)) {
 
 # Release notes
 
+## 1.7.1
+
+### New Features
+
+* Change framework format to .xcframework.
+
 ## 1.7.0
 
 ### New Features
