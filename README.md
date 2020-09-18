@@ -6,7 +6,7 @@ When you run mobile campaigns, boost of new app installs are often one of the ma
 
 ## ***Important iOS 14 support***
 
-Apple introduced a new AppTrackingTransparency framework and tracking permission in iOS 14. To support these changes you will need to make couple of small changes in Adfrom Tracking SDK integration. For more information check Migration Guide down bellow.
+Apple introduced a new AppTrackingTransparency framework and tracking permission in iOS 14. To support these changes you will need to make couple of small changes in Adfrom Tracking SDK integration. For more information check [Migration Guide](https://github.com/adform/adform-tracking-ios-sdk#upgrading-to-170) down bellow.
 
 ## 1. General Info
 
@@ -106,6 +106,9 @@ if (@available(iOS 14.0, *)) {
     [[AdformTrackingSDK sharedInstance] requestTrackingPermissions];
 }
 ```
+
+* Add `NSUserTrackingUsageDescription` entry to your apps `Info.plist` file. 
+
 
 Thats it! You are ready to go. Now in Adform system will see default tracking points (Download, Start, Update), when they are triggered.
 
