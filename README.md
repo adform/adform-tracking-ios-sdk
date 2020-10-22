@@ -418,6 +418,12 @@ if (@available(iOS 14.0, *)) {
 
 # Release notes
 
+## 1.7.2
+
+### New Features
+
+* Add Swift Package Manager support.
+
 ## 1.7.1
 
 ### New Features
