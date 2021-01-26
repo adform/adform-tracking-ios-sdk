@@ -11,14 +11,21 @@ let package = Package(
     products: [
         .library(
             name: "AdformTracking",
-            targets: ["AdformTracking"])
+            targets: ["AdformTracking", "AdformTrackingDependencies"]
+        )
     ],
     dependencies: [
-        .package(url: "https://github.com/adform/protobuf-ios", .upToNextMajor(from: "3.11.5")),
+        .package(name: "ProtocolBuffers", url: "https://github.com/adform/protobuf-ios", .upToNextMajor(from: "3.11.5")),
     ],
     targets: [
         .binaryTarget(
             name: "AdformTracking",
-            path: "AdformTracking.xcframework")
+            path: "AdformTracking.xcframework"
+        ),
+        .target(
+            name: "AdformTrackingDependencies",
+            dependencies: ["ProtocolBuffers"],
+            path: "ProtocolBuffersWrapper"
+        )
     ]
 )
