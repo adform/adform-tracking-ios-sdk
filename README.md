@@ -27,17 +27,29 @@ Tracking SDK is also available on these platforms:
 
 ## 2. Integration
 
-### 2.1. Using CocoaPods
+### 2.1. Using Swift Package Manager
+
+The [Swift Package Manager](https://swift.org/package-manager/) is a tool for managing the distribution of Swift code. It’s integrated with the Swift build system to automate the process of downloading, compiling, and linking dependencies.
+
+You can add Adform Tracking SDK as a dependency to your project through Xcode UI or add it to your project's `Package.swift` file like this:
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/adform/adform-tracking-ios-sdk", .upToNextMajor(from: "1.3.0"))
+]
+```
+
+### 2.2. Using CocoaPods
 
 Adform Tracking SDK is available via [CocoaPods](https://cocoapods.org/). To integrate SDK using CocoaPods, you need to edit `Podfile` and specify the `AdformTracking` pod.
 
 ```
-pod 'AdformTracking', '~> 1.3.3'
+pod 'AdformTracking', '~> 1.3.0'
 ```
 
 For more information about CocoaPods visit [CocoaPods site](http://cocoapods.org/about).
 
-### 2.2. Using Carthage
+### 2.3. Using Carthage
 
 Adform Tracking SDK is available via Carthage. 
 
@@ -58,7 +70,7 @@ github "adform/protobuf-ios"
 
 For more information about Carthage visit [Carthage site](https://github.com/Carthage/Carthage).
 
-### 2.3. Manual
+### 2.4. Manual
 
 * Download latest build version of Adform Tracking SDK.
 * Drag **AdformTracking.framework** to your project.
