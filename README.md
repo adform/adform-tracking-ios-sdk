@@ -204,7 +204,7 @@ Thats it! You are ready to go. Now in Adform system will see default tracking po
 To logicaly group tracking points you can set separate app names for each custom tracking point. This would allow to use app name together with custom section name.
 
 ````objc
-    TrackPoint *trackPoint = [[TrackPoint alloc] initTrackPoint:Tracking_ID];
+    AFTrackPoint *trackPoint = [[AFTrackPoint alloc] initTrackPoint:Tracking_ID];
     
     [trackPoint setSectionName:@"Custom Tracking Point Name"];
     [trackPoint setAppName:@"Custom_app_name-Section_name"];
@@ -217,7 +217,7 @@ To logicaly group tracking points you can set separate app names for each custom
 Also it is posible to send additional product variables information with tracking points. To do so you have two options, first use `addProduct:` method and add products to the trackpoint one at a time, second use `setProducts:` method and set an array of products. Either way you must set `AFProduct` objects.
 
 ````objc
-    TrackPoint *trackPoint = [[TrackPoint alloc] initTrackPoint:Tracking_ID];
+    AFTrackPoint *trackPoint = [[AFTrackPoint alloc] initTrackPoint:Tracking_ID];
     [trackPoint setSectionName:@"Custom Tracking Point Name"];
     
     AFProduct *product = [[AFProduct alloc] initWithCategoryName:@"Product category name"
@@ -236,7 +236,7 @@ Also it is posible to send additional product variables information with trackin
 Also for same tracking point you can list more than one product variables list:
 
 ````objc
-    TrackPoint *trackPoint = [[TrackPoint alloc] initTrackPoint:Tracking_ID];
+    AFTrackPoint *trackPoint = [[AFTrackPoint alloc] initTrackPoint:Tracking_ID];
     [trackPoint setSectionName:@"Custom Tracking Point Name"];
     
     AFProduct *product1 = [[AFProduct alloc] initWithCategoryName:@"Product category name"
@@ -267,7 +267,7 @@ Also for same tracking point you can list more than one product variables list:
 If you want to send only part of available product data, you can avoid using big init method by setting those properties manually after creating an object with default initializer.
 
 ````objc
-    TrackPoint *trackPoint = [[TrackPoint alloc] initTrackPoint:Tracking_ID];
+    AFTrackPoint *trackPoint = [[AFTrackPoint alloc] initTrackPoint:Tracking_ID];
 
     AFProduct *product = [AFProduct new];
     product.productName = @"My Product Name";
