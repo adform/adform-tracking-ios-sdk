@@ -39,6 +39,18 @@ dependencies: [
 ]
 ```
 
+
+**Important!** Xcode 12 has a bug where static frameworks distributed through SPM sometimes get embedded incorrectly into the app. This issue is mentioned in [Xcode 12.4 release notes](https://developer.apple.com/documentation/xcode-release-notes/xcode-12_4-release-notes). If the validation of your archived app fails you may need to use a workaround that strips the embedded frameworks after the build. You can use this build phase script to remove embedded frameworks from the app:
+
+```
+APP_PATH="${TARGET_BUILD_DIR}/${WRAPPER_NAME}"
+
+rm -rf "${APP_PATH}/Frameworks/AdformTracking.framework"
+rm -rf "${APP_PATH}/Frameworks/ProtocolBuffers.framework"
+rm -rf "${APP_PATH}/Plugins/AdformTracking.framework"
+rm -rf "${APP_PATH}/Plugins/ProtocolBuffers.framework"
+```
+
 ### 2.2. Using CocoaPods
 
 Adform Tracking SDK is available via [CocoaPods](https://cocoapods.org/). To integrate SDK using CocoaPods, you need to edit `Podfile` and specify the `AdformTracking` pod.
