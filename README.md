@@ -13,7 +13,7 @@ Apple introduced a new AppTrackingTransparency framework and tracking permission
 The use of Adform Tracking SDK requires the following:
 
 * Xcode 9.0 or later.
-* Requires deployment target 8.0 or later.
+* Requires deployment target 9.0 or later.
 * Requires ARC to be enabled. 
 
 [**Please folow Migration guide below if you are updating SDK to version 1.0.**](https://github.com/adform/adform-tracking-ios-sdk#upgrading-to-10)
