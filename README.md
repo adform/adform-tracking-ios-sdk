@@ -404,6 +404,10 @@ Example:
 [[AdformTrackingSDK sharedInstance] setCustomUserAgent:@"YOUR CUSTOM USER AGENT"];
 ```
 
+## 14. Debug mode
+
+You can enable debug mode by providing `AFTDebugModeEnabled` launch argument. When debug mode is enabled SDK will print additional logs to the console. This may be usefull during development while integrating Adform Tracking SDK into your application. 
+
 # Migration guide
 
 ## Upgrading to 1.0
@@ -441,6 +445,18 @@ if (@available(iOS 14.0, *)) {
 
 
 # Release notes
+
+## 1.7.4
+
+### New Features
+
+* Adds debug mode, that can be enabled with `AFTDebugModeEnabled` launch argument. When debug mode is enabled SDK will print additional debug logs into the console.
+
+## 1.7.3
+
+### Bug fixes
+
+* Fix Swift Package Manager dependencies
 
 ## 1.7.2
 
