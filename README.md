@@ -35,7 +35,7 @@ You can add Adform Tracking SDK as a dependency to your project through Xcode UI
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/adform/adform-tracking-ios-sdk", .upToNextMajor(from: "1.3.0"))
+    .package(url: "https://github.com/adform/adform-tracking-ios-sdk", .upToNextMajor(from: "1.7.4"))
 ]
 ```
 
@@ -56,7 +56,7 @@ rm -rf "${APP_PATH}/Plugins/ProtocolBuffers.framework"
 Adform Tracking SDK is available via [CocoaPods](https://cocoapods.org/). To integrate SDK using CocoaPods, you need to edit `Podfile` and specify the `AdformTracking` pod.
 
 ```
-pod 'AdformTracking', '~> 1.3.0'
+pod 'AdformTracking', '~> 1.7.4'
 ```
 
 For more information about CocoaPods visit [CocoaPods site](http://cocoapods.org/about).
@@ -93,11 +93,10 @@ For more information about Carthage visit [Carthage site](https://github.com/Car
 
 ![alt tag](Screenshots/copy.png)
 
-* Then select **AdformTracking.framework** in project navigator, go to file inspector and add it to your applications target (Target Membership).
+* Then select **AdformTracking.xcframework** in project navigator, go to file inspector and add it to your applications target (Target Membership).
 
 * Adform Tracking SDK uses Protocol Buffers - Google's data interchange format. 
-Therefore you need to import Protobuf library to your project. You should use [3.0.0-beta-3.1 version](https://github.com/google/protobuf/releases/tag/v3.0.0-beta-3.1) or newer version of the library. 
-Instructions on how to integrate it can be found [here](https://github.com/google/protobuf/tree/master/objectivec#building).
+Therefore you need to import Protobuf library to your project. You can use it either directly from [Google source code](https://github.com/google/protobuf/tree/master/objectivec) or integrate our [framework build](https://github.com/adform/protobuf-ios). 
 
 ### 2.4. Troubleshooting
 
@@ -114,20 +113,43 @@ Instructions on how to integrate it can be found [here](https://github.com/googl
 
 * In `application:didFinishLaunchingWithOptions:` method call `startTracking:waitForPermissions:` method with your Client Tracking ID and `waitForPermissions` `true`. This method should be called only one time, when app starts.
 
+#### Swift
+
+```swift
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+    AdformTrackingSDK.sharedInstance().startTracking(yourTrackingId, waitForPermissions: true)
+        
+    return true
+}
+```
+
+#### Objective-C
+
 ````objc
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
-    [[AdformTrackingSDK sharedInstance] startTracking:Tracking_ID waitForPermissions:true];
-
+   
+    [[AdformTrackingSDK sharedInstance] startTracking:yourTrackingId waitForPermissions:true];
+	
     return YES;
 }
 ````
 
-* Then call `requestTrackingPermissions` to get user permission to use Advertising Identifier for tracking. Calling this method will present systemic permission alert. Therefore, it is up to you to decide when it best to show this alert. 
+* Then call `requestTrackingPermissions` to get user permission to use Advertising Identifier for tracking. Calling this method will present systemic permission alert. Therefore, it is up to you to decide when it is best to show this alert. 
+
+#### Swift
+
+```swift
+if #available(iOS 14.0, *) {
+     AdformTrackingSDK.sharedInstance().requestTrackingPermissions()
+}
+```
+
+#### Objective-C
 
 ```objc
 if (@available(iOS 14.0, *)) {
-    [[AdformTrackingSDK sharedInstance] requestTrackingPermissions];
+     [[AdformTrackingSDK sharedInstance] requestTrackingPermissions];
 }
 ```
 
@@ -138,32 +160,64 @@ Thats it! You are ready to go. Now in Adform system will see default tracking po
 
 * Optionally, if you don't want to use Advertising Identifier for tracking, you may not ask user for permissions. In this case you must pass `false` to  `waitForPermissions` when calling `startTracking:waitForPermissions:`.  
 
+#### Swift
+
+```swift
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+    AdformTrackingSDK.sharedInstance().startTracking(yourTrackingId, waitForPermissions: true)
+        
+    return true
+}
+```
+
+#### Objective-C
+
 ````objc
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
-    [[AdformTrackingSDK sharedInstance] startTracking:Tracking_ID waitForPermissions:false];
-
+   
+    [[AdformTrackingSDK sharedInstance] startTracking:yourTrackingId waitForPermissions:false];
+	
     return YES;
 }
 ````
 
 * Optionally you can set custom application name and custom variables before calling `startTracking:`.
 
+#### Swift
+
+```swift
+AdformTrackingSDK.sharedInstance().setAppName("CustomApplicationName")
+
+let order = AFOrder()
+order.firstName = "Fist name"
+order.lastName = "Last name"
+        
+// You also can set other custom variables.
+order.setCustomVariable("var1", forKey: 1)
+order.setSystemVariable("sysVar1", forKey: 1)
+order.setNumericSystemVariable(123.45, forKey: 1)
+        
+AdformTrackingSDK.sharedInstance().setOrder(order)
+AdformTrackingSDK.sharedInstance().startTracking(yourTrackingId, waitForPermissions: true)
+```
+
+#### Objective-C
+
 ````objc
-    [[AdformTrackingSDK sharedInstance] setAppName:@"CustomApplicationName"];
+[[AdformTrackingSDK sharedInstance] setAppName:@"CustomApplicationName"];
 
-    AFOrder *order = [AFOrder new];
-    order.firstName = @"First Name";
-    order.lastName = @"Last Name";
+AFOrder *order = [AFOrder new];
+order.firstName = @"First Name";
+order.lastName = @"Last Name";
 
-    // You also can set other custom variables.
-    [order setCustomVariable:@"var1" forKey:1];
-    [order setSystemVariable:@"sysVar1" forKey:1];
-    [order setNumericSystemVariable:@(123.45) forKey:1];
+// You also can set other custom variables.
+[order setCustomVariable:@"var1" forKey:1];
+[order setSystemVariable:@"sysVar1" forKey:1];
+[order setNumericSystemVariable:@(123.45) forKey:1];
 
-    [[AdformTrackingSDK sharedInstance] setOrder:order];
-
-    [[AdformTrackingSDK sharedInstance] startTracking:TRACKING_ID];
+[[AdformTrackingSDK sharedInstance] setOrder:order];
+[[AdformTrackingSDK sharedInstance] startTracking:yourTrackingId waitForPermissions:false];
 ````
 
 ## 4. Custom Adform Tracking SDK implementations
@@ -180,112 +234,234 @@ Thats it! You are ready to go. Now in Adform system will see default tracking po
 
 * Create a `AFTrackPoint` instance with your track point id, set custom application name, custom parameters, a.k.a. order, and send the track point.
 
+#### Swift
+
+```swift
+let trackPoint = AFTrackPoint(trackPoint: yourTrackingId)
+trackPoint.setSectionName("Custom Tracking Point Name")
+        
+let order = AFOrder()
+order.orderId = "Order ID"
+order.sale = 1234
+order.currency = "Eur"
+order.orderStatus = "Sold"
+order.firstName = "First Name"
+order.lastName = "Last Name"
+order.country = "Country"
+order.address1 = "Address 1"
+order.address2 = "Address 2"
+order.zip = "ZIP code"
+order.email = "E-mail"
+order.phone = "Phone"
+order.gender = "Gender"
+order.ageGroup = "Age group"
+order.basketSize = 12
+        
+// You also can set other custom variables.
+order.setCustomVariable("var1", forKey: 1) // key defines variable index, e.g. forKey:3 means Var3
+order.setSystemVariable("sysVar1", forKey: 1) // key defines variable index, e.g. forKey:3 means Sv3
+order.setNumericSystemVariable(123.45, forKey: 1) // key defines variable index, e.g. forKey:2 means Svn2; Only numeric values allowed
+
+trackPoint.setOrder(order)
+        
+AdformTrackingSDK.sharedInstance().send(trackPoint)
+```
+
+#### Objective-C
+
 ````objc
-    AFTrackPoint *trackPoint = [[AFTrackPoint alloc] initTrackPoint:TRACKING_ID];
+AFTrackPoint *trackPoint = [[AFTrackPoint alloc] initTrackPoint:yourTrackingId];
+[trackPoint setSectionName:@"CCustom Tracking Point Name"];
 
-    [trackPoint setSectionName:@"Custom Application Name"];
+AFOrder *order = [AFOrder new];
+order.orderId = @"Order ID";
+order.sale = 1234; //numeric format
+order.currency = @"Eur";
+order.orderStatus = @"Sold";
+order.firstName = @"First Name";
+order.lastName = @"Last Name";
+order.country = @"Country";
+order.address1 = @"Address 1";
+order.address2 = @"Address 2";
+order.zip = @"ZIP code";
+order.email = @"E-mail";
+order.phone = @"Phone";
+order.gender = @"Gender";
+order.ageGroup = @"Age group";
+order.basketSize = 12; //numeric format
 
-    AFOrder *order = [AFOrder new];
-    order.orderid = @"Order ID";
-    order.sale = 1234; //numeric format
-    order.currency = @"Eur";
-    order.orderStatus = @"Sold";
-    order.firstName = @"First Name";
-    order.lastName = @"Last Name";
-    order.country = @"Country";
-    order.address1 = @"Address 1";
-    order.address2 = @"Address 2";
-    order.zip = @"ZIP code";
-    order.email = @"E-mail";
-    order.phone = @"Phone";
-    order.gender = @"Gender";
-    order.ageGroup = @"Age group";
-    order.basketSize = 12; //numeric format
+// You can also set other custom variables.
+[order setCustomVariable:@"Var1 value" forKey:1]; // forKey defines variable index, e.g. forKey:3 means Var3
+[order setSystemVariable:@"Sv1 value" forKey:1]; // forKey defines variable index, e.g. forKey:3 means Sv3
+[order setNumericSystemVariable:@(123.45) forKey:1]; // forKey defines variable index, e.g. forKey:2 means Svn2; Only numeric values allowed
 
-    // You can also set other custom variables.
-    [order setCustomVariable:@"Var1 value" forKey:1]; //forKey defines variable index, e.g. forKey:3 means Var3
-    [order setSystemVariable:@"Sv1 value" forKey:1]; //forKey defines variable index, e.g. forKey:3 means Sv3
-    [order setNumericSystemVariable:@(123.45) forKey:1]; //forKey defines variable index, e.g. forKey:2 means Svn2; Only numeric values allowed
+[trackPoint setOrder:order];
 
-    [trackPoint setOrder:order];
-
-    [[AdformTrackingSDK sharedInstance] sendTrackPoint:trackPoint];
+[[AdformTrackingSDK sharedInstance] sendTrackPoint:trackPoint];
 ````
 
 
 To logicaly group tracking points you can set separate app names for each custom tracking point. This would allow to use app name together with custom section name.
 
+#### Swift
+
+```swift
+let trackPoint = AFTrackPoint(trackPoint: yourTrackingId)
+        
+trackPoint.setSectionName("Custom Tracking Point Name")
+trackPoint.setAppName("Custom_app_name-Section_name")
+        
+AdformTrackingSDK.sharedInstance().send(trackPoint)
+```
+
+#### Objective-C
+
 ````objc
-    AFTrackPoint *trackPoint = [[AFTrackPoint alloc] initTrackPoint:Tracking_ID];
+AFTrackPoint *trackPoint = [[AFTrackPoint alloc] initTrackPoint:yourTrackingId];
     
-    [trackPoint setSectionName:@"Custom Tracking Point Name"];
-    [trackPoint setAppName:@"Custom_app_name-Section_name"];
+[trackPoint setSectionName:@"Custom Tracking Point Name"];
+[trackPoint setAppName:@"Custom_app_name-Section_name"];
     
-    [[AdformTrackingSDK sharedInstance] sendTrackPoint:trackPoint];
+[[AdformTrackingSDK sharedInstance] sendTrackPoint:trackPoint];
 ````
 
 ## 5. Product variables
 
 Also it is posible to send additional product variables information with tracking points. To do so you have two options, first use `addProduct:` method and add products to the trackpoint one at a time, second use `setProducts:` method and set an array of products. Either way you must set `AFProduct` objects.
 
+#### Swift
+
+```swift
+let trackPoint = AFTrackPoint(trackPoint: yourTrackingId)
+trackPoint.setSectionName("Custom Application Name")
+        
+let product = AFProduct(
+    categoryName: "Product category name",
+    categoryId: "Product category id",
+    productName: "Product name",
+    productId: "Product id",
+    weight: 10,
+    step: 1,
+    productSales: 12.58,
+    productCount: 2,
+    custom: "Custom product information"
+)
+trackPoint.addProduct(product)
+        
+AdformTrackingSDK.sharedInstance().send(trackPoint)
+```
+
+#### Objective-C
+
 ````objc
-    AFTrackPoint *trackPoint = [[AFTrackPoint alloc] initTrackPoint:Tracking_ID];
-    [trackPoint setSectionName:@"Custom Tracking Point Name"];
+AFTrackPoint *trackPoint = [[AFTrackPoint alloc] initTrackPoint:yourTrackingId];
+[trackPoint setSectionName:@"Custom Tracking Point Name"];
     
-    AFProduct *product = [[AFProduct alloc] initWithCategoryName:@"Product category name"
-                                                      categoryId:@"Product category id"
-                                                     productName:@"Product name"
-                                                       productId:@"Product id"
-                                                          weight:@"Product weight"
-                                                            step:@"Product step"
-                                                    productSales:@"Product sales"
-                                                    productCount:@"Product count"
-                                                          custom:@"Custom product information"];
-    [trackPoint addProduct:product];
+AFProduct *product = [[AFProduct alloc] initWithCategoryName:@"Product category name"
+                                                  categoryId:@"Product category id"
+                                                 productName:@"Product name"
+                                                   productId:@"Product id"
+                                                      weight:10
+                                                        step:1
+                                                productSales:12.58
+                                                productCount:2
+                                                      custom:@"Custom product information"];
+ [trackPoint addProduct:product];
     
-    [[AdformTrackingSDK sharedInstance] sendTrackPoint:trackPoint];
+ [[AdformTrackingSDK sharedInstance] sendTrackPoint:trackPoint];
 ```` 
+
 Also for same tracking point you can list more than one product variables list:
 
-````objc
-    AFTrackPoint *trackPoint = [[AFTrackPoint alloc] initTrackPoint:Tracking_ID];
-    [trackPoint setSectionName:@"Custom Tracking Point Name"];
-    
-    AFProduct *product1 = [[AFProduct alloc] initWithCategoryName:@"Product category name"
-                                                      categoryId:@"Product category id"
-                                                     productName:@"Product name"
-                                                       productId:@"Product id"
-                                                          weight:@"Product weight"
-                                                            step:@"Product step"
-                                                    productSales:@"Product sales"
-                                                    productCount:@"Product count"
-                                                          custom:@"Custom product information"];
-                                                          
-    AFProduct *product2 = [[AFProduct alloc] initWithCategoryName:@"Product category name"
-                                                      categoryId:@"Product category id"
-                                                     productName:@"Product name"
-                                                       productId:@"Product id"
-                                                          weight:@"Product weight"
-                                                            step:@"Product step"
-                                                    productSales:@"Product sales"
-                                                    productCount:@"Product count"
-                                                          custom:@"Custom product information"];
-    [trackPoint setProducts:@[product1, product2]];
+#### Swift
 
-    [[AdformTrackingSDK sharedInstance] sendTrackPoint:trackPoint];
+```swift
+let trackPoint = AFTrackPoint(trackPoint: yourTrackingId)
+trackPoint.setSectionName("Custom Application Name")
+        
+let product1 = AFProduct(
+    categoryName: "Product category name",
+    categoryId: "Product category id",
+    productName: "Product name",
+    productId: "Product id",
+    weight: 10,
+    step: 1,
+    productSales: 12.58,
+    productCount: 2,
+    custom: "Custom product information"
+)
+
+let product2 = AFProduct(
+    categoryName: "Product category name",
+    categoryId: "Product category id",
+    productName: "Product name",
+    productId: "Product id",
+    weight: 10,
+    step: 1,
+    productSales: 12.58,
+    productCount: 2,
+    custom: "Custom product information"
+)
+trackPoint.setProducts([product1, product2])
+        
+AdformTrackingSDK.sharedInstance().send(trackPoint)
+```
+
+#### Objective-C
+
+````objc
+AFTrackPoint *trackPoint = [[AFTrackPoint alloc] initTrackPoint:yourTrackingId];
+[trackPoint setSectionName:@"Custom Tracking Point Name"];
+    
+AFProduct *product1 = [[AFProduct alloc] initWithCategoryName:@"Product category name"
+                                                   categoryId:@"Product category id"
+                                                  productName:@"Product name"
+                                                    productId:@"Product id"
+                                                       weight:10
+                                                         step:1
+                                                 productSales:12.58
+                                                 productCount:2
+                                                       custom:@"Custom product information"];
+                                                          
+AFProduct *product2 = [[AFProduct alloc] initWithCategoryName:@"Product category name"
+                                                   categoryId:@"Product category id"
+                                                  productName:@"Product name"
+                                                    productId:@"Product id"
+                                                       weight:10
+                                                         step:1
+                                                 productSales:12.58
+                                                 productCount:2
+                                                       custom:@"Custom product information"];
+[trackPoint setProducts:@[product1, product2]];
+
+[[AdformTrackingSDK sharedInstance] sendTrackPoint:trackPoint];
 ```` 
 
 
 If you want to send only part of available product data, you can avoid using big init method by setting those properties manually after creating an object with default initializer.
 
-````objc
-    AFTrackPoint *trackPoint = [[AFTrackPoint alloc] initTrackPoint:Tracking_ID];
+#### Swift
 
-    AFProduct *product = [AFProduct new];
-    product.productName = @"My Product Name";
-    [trackPoint addProduct:product];
+```swift
+let trackPoint = AFTrackPoint(trackPoint: yourTrackingId)
+        
+let product = AFProduct()
+product.productName = "My Product Name"
+trackPoint.addProduct(product)
+        
+AdformTrackingSDK.sharedInstance().send(trackPoint)
+```
+
+#### Objective-C
+
+````objc
+AFTrackPoint *trackPoint = [[AFTrackPoint alloc] initTrackPoint:Tracking_ID];
+
+AFProduct *product = [AFProduct new];
+product.productName = @"My Product Name";
+[trackPoint addProduct:product];
     
-    [[AdformTrackingSDK sharedInstance] sendTrackPoint:trackPoint];
+[[AdformTrackingSDK sharedInstance] sendTrackPoint:trackPoint];
 ```` 
 
 ## 6. Sending information to multiple clients
@@ -294,40 +470,81 @@ It is possible to send tracking information to multiple clients by defining each
 
 In order to start tracking, please use an example below:
 
+#### Swift
+
+```swift
+AdformTrackingSDK.sharedInstance()
+    .startTracking(
+        withIds: [yourTrackingId1, yourTrackingId2, yourTrackingId3],
+        waitForPermissions: true
+    )
+```
+
+#### Objective-C
+
 ````objc
-    [[AdformTrackingSDK sharedInstance] startTrackingWithIds:@[Tracking_ID1, Tracking_ID2, Tracking_ID3]];
+[[AdformTrackingSDK sharedInstance] startTrackingWithIds:@[yourTrackingId1, yourTrackingId2, yourTrackingId3] waitForPermissions:true];
 ````
 
 To send custom tracking points for multiple clients, you should use `AFTrackPointsBuilder` class. It helps you create multiple trackpoints with same information, but differrent tracking id.Example bellow ilustrates how to do so:
 
+#### Swift
+
+```swift
+let trackPointBuilder = AFTrackPointsBuilder()
+        
+// You must set at least these properties:
+trackPointBuilder.trackPointIds = [yourTrackingId1, yourTrackingId2, yourTrackingId3]
+trackPointBuilder.sectionName = "Custom trackpoint"
+        
+// Additionally you can set more information to track.
+trackPointBuilder.applicationName = "Custom application name"
+trackPointBuilder.order = yourOrder;
+            
+// Create trackpoints
+let trackingPoints = trackPointBuilder.build()
+            
+// Send trackpoints.
+AdformTrackingSDK.sharedInstance().send(trackingPoints)
+```
+
+#### Objective-C
+
 ````objc
-    AFTrackPointsBuilder *trackPointBuilder = [[AFTrackPointsBuilder alloc] init];
+AFTrackPointsBuilder *trackPointBuilder = [[AFTrackPointsBuilder alloc] init];
     
-    // You must set at least these properties:
-    trackPointBuilder.trackPointIds = @[Tracking_ID1, Tracking_ID2, Tracking_ID3];
-    trackPointBuilder.sectionName = @"Custom trackpoint";
+// You must set at least these properties:
+trackPointBuilder.trackPointIds = @[yourTrackingId1, yourTrackingId2, yourTrackingId3];
+trackPointBuilder.sectionName = @"Custom trackpoint";
     
-    // Additionally you can set more information to track.
-    trackPointBuilder.applicationName = @"Custom application name";
-    trackPointBuilder.order = yourOrder;
+// Additionally you can set more information to track.
+trackPointBuilder.applicationName = @"Custom application name";
+trackPointBuilder.order = yourOrder;
     
-    // Create trackpoints
-    NSArray *trackPoints = [trackPointBuilder build];
+// Create trackpoints
+NSArray *trackPoints = [trackPointBuilder build];
     
-    // Send trackpoints.
-    [[AdformTrackingSDK sharedInstance] sendTrackPoints:trackPoints];
+// Send trackpoints.
+[[AdformTrackingSDK sharedInstance] sendTrackPoints:trackPoints];
 ````
 
 ## 7. Limit tracking
 
 You can disable the Adform Tracking SDK from tracking any events by calling `setEnabled:` with parameter `NO`. This setting is remembered between application launches. By default tracking is enabled.
 
+#### Swift
+
+```swift
+AdformTrackingSDK.sharedInstance().setEnabled(false)
+```
+
+#### Objective-C
+
 ````objc
-    [[AdformTrackingSDK sharedInstance] setEnabled:NO];
+[[AdformTrackingSDK sharedInstance] setEnabled:NO];
 ```` 
 
 You can check if tracking is enabled by calling `isEnabled` method.
- 
 
 ## 8. Deeplink tracking
 
@@ -335,11 +552,19 @@ Adform Tracking SDK uses deep-link tracking to attribute part of Facebook events
 
 The implementation is very simple, you just have to call `AdformTrackingSDK` method `applicationOpenUrl:sourceApplication:` in your `AppDelegate` class's method `application:openURL:sourceApplication:annotation:` and pass url and sourceApplication parameters.
 
+#### Swift
+
+```swift
+func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+    return AdformTrackingSDK.sharedInstance().applicationOpen(url, options: options)
+}
+```
+
+#### Objective-C
+
 ````objc
-- (BOOL )application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    
-    return [[AdformTrackingSDK sharedInstance] applicationOpenUrl:url
-                                                sourceApplication:sourceApplication];
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+    return [[AdformTrackingSDK sharedInstance] applicationOpenURL:url options:options];
 }
 ````
 
@@ -349,17 +574,34 @@ Adform Tracking SDK allows you to track user device SIM card state. This feature
 
 This feature is turned off by default, therefore if you want to use it, you need to enable it. To do so you just need to use the `setSendSimCardStateEnabled:` method.
 
+#### Swift
+
+```swift
+AdformTrackingSDK.sharedInstance().setSendSimCardStateEnabled(true)
+AdformTrackingSDK.sharedInstance().startTracking(yourTrackingId, waitForPermissions: true)
+```
+
+#### Objective-C
+
 ````objc
-    [[AdformTrackingSDK sharedInstance] setSendSimCardStateEnabled:true];
-    [[AdformTrackingSDK sharedInstance] startTracking:Tracking_ID];
+[[AdformTrackingSDK sharedInstance] setSendSimCardStateEnabled:true];
+[[AdformTrackingSDK sharedInstance] startTracking:yourTrackingId waitForPermissions:true];
 ````
 
 ## 10. Security
 
-By default AdformTracking sdk uses HTTPS protocol for network comunnications, but there is a possibility to disable it and use insecure HTTP protocol. Example below shows you how to do it.
+By default AdformTracking sdk uses HTTPS protocol for network comunnications, but there is a possibility to disable it and use an insecure HTTP protocol. Example below shows you how to do it.
+
+#### Swift
+
+```swift
+AdformTrackingSDK.sharedInstance().setHTTPSEnabled(false)
+```
+
+#### Objective-C
 
 ````objc
-	[[AdformTrackingSDK sharedInstance] setHTTPSEnabled:false];
+AdformTrackingSDK sharedInstance] setHTTPSEnabled:false];
 ````
 
 ## 11. GDPR
@@ -369,6 +611,17 @@ By default Adform Tracking SDK will check CMP settings and use that information.
 It is possible to set GDPR and GDPR consent manually. You need to use `setGdpr:` and `setGDPRConsent:` methods. For GDPR consent you need to set base64-encoded string.
 
 Example:
+
+#### Swift
+
+```swift
+AdformTrackingSDK.sharedInstance().setGDPR(true)
+	
+let encodedGDPRConsent = "GgdprConsent".data(using: .utf8)?.base64EncodedString()
+AdformTrackingSDK.sharedInstance().setGDPRConsent(encodedGDPRConsent)
+```
+
+#### Objective-C
 
 ```objc
 [[AdformTrackingSDK sharedInstance] setGDPR:@(true)];
@@ -389,6 +642,15 @@ It is also possible to set US Privacy value manually. You can do this using  `se
 
 Example:
 
+#### Swift
+
+```swift
+let usPrivacy = "US_PRIVACY"
+AdformTrackingSDK.sharedInstance().setUSPrivacy(usPrivacy)
+```
+
+#### Objective-C
+
 ```objc
 NSString *usPrivacy = @"US_PRIVACY";
 [[AdformTrackingSDK sharedInstance] setUSPrivacy:usPrivacy];
@@ -399,6 +661,14 @@ NSString *usPrivacy = @"US_PRIVACY";
 Adform Tracking SDK uses web view user-agent as one of the parameters to identify users and perform attribution. In some cases an issue may arise if you are firing some tracking points in your own web view, e.g. you are developing a hibrid application. In these cases attribution may not work because user-agent of your own web view and default web view user-agent used by our SDK may not match. To solve this issue Adform Tracking SDK provides a method to set a custom user agent.
 
 Example:
+
+#### Swift
+
+```swift
+AdformTrackingSDK.sharedInstance().setCustomUserAgent("YOUR CUSTOM USER AGENT")
+```
+
+#### Objective-C
 
 ```objc
 [[AdformTrackingSDK sharedInstance] setCustomUserAgent:@"YOUR CUSTOM USER AGENT"];
@@ -429,11 +699,29 @@ In iOS 14 we need to ask user for permission to use Advertising Identifier for t
 
 1. Pass in `true` as `waitForPermissions` parameter to `startTracking` method.
 
+#### Swift
+
+```swift
+AdformTrackingSDK.sharedInstance().startTracking(withIds: yourTrackingId, waitForPermissions: true)
+```
+
+#### Objective-C
+
 ```objc
-[[AdformTrackingSDK sharedInstance] startTracking:Tracking_ID waitForPermissions:true];
+[[AdformTrackingSDK sharedInstance] startTracking:yourTrackingId waitForPermissions:true];
 ```
 
 2. Ask user for permission to access Advertising Identifier using `requestTrackingPermissions` method. Calling this method will present a systemic permissions alert, therefore it's up to you to decide when it is most apropriate to show it. 
+
+#### Swift
+
+```swift
+if #available(iOS 14.0, *) {
+    AdformTrackingSDK.sharedInstance().requestTrackingPermissions()
+}
+```
+
+#### Objective-C
 
 ```objc
 if (@available(iOS 14.0, *)) {
