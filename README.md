@@ -124,16 +124,19 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 }
 ```
 
-#### Objective-C
-
-````objc
+<details>
+  <summary>Objective-C</summary>
+	
+```objc
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
    
     [[AdformTrackingSDK sharedInstance] startTracking:yourTrackingId waitForPermissions:true];
 	
     return YES;
 }
-````
+```
+	
+</details>
 
 * Then call `requestTrackingPermissions` to get user permission to use Advertising Identifier for tracking. Calling this method will present systemic permission alert. Therefore, it is up to you to decide when it is best to show this alert. 
 
@@ -145,13 +148,16 @@ if #available(iOS 14.0, *) {
 }
 ```
 
-#### Objective-C
+<details>
+  <summary>Objective-C</summary>
 
 ```objc
 if (@available(iOS 14.0, *)) {
      [[AdformTrackingSDK sharedInstance] requestTrackingPermissions];
 }
 ```
+
+</details>
 
 * Add `NSUserTrackingUsageDescription` entry to your apps `Info.plist` file. 
 
@@ -171,16 +177,19 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 }
 ```
 
-#### Objective-C
+<details>
+  <summary>Objective-C</summary>
 
-````objc
+```objc
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
    
     [[AdformTrackingSDK sharedInstance] startTracking:yourTrackingId waitForPermissions:false];
 	
     return YES;
 }
-````
+```
+
+</details>
 
 * Optionally you can set custom application name and custom variables before calling `startTracking:`.
 
@@ -202,9 +211,10 @@ AdformTrackingSDK.sharedInstance().setOrder(order)
 AdformTrackingSDK.sharedInstance().startTracking(yourTrackingId, waitForPermissions: true)
 ```
 
-#### Objective-C
+<details>
+  <summary>Objective-C</summary>
 
-````objc
+```objc
 [[AdformTrackingSDK sharedInstance] setAppName:@"CustomApplicationName"];
 
 AFOrder *order = [AFOrder new];
@@ -218,7 +228,9 @@ order.lastName = @"Last Name";
 
 [[AdformTrackingSDK sharedInstance] setOrder:order];
 [[AdformTrackingSDK sharedInstance] startTracking:yourTrackingId waitForPermissions:false];
-````
+```
+
+</details>
 
 ## 4. Custom Adform Tracking SDK implementations
 
@@ -267,9 +279,10 @@ trackPoint.setOrder(order)
 AdformTrackingSDK.sharedInstance().send(trackPoint)
 ```
 
-#### Objective-C
+<details>
+  <summary>Objective-C</summary>
 
-````objc
+```objc
 AFTrackPoint *trackPoint = [[AFTrackPoint alloc] initTrackPoint:yourTrackingId];
 [trackPoint setSectionName:@"CCustom Tracking Point Name"];
 
@@ -298,7 +311,9 @@ order.basketSize = 12; //numeric format
 [trackPoint setOrder:order];
 
 [[AdformTrackingSDK sharedInstance] sendTrackPoint:trackPoint];
-````
+```
+
+</details>
 
 
 To logicaly group tracking points you can set separate app names for each custom tracking point. This would allow to use app name together with custom section name.
@@ -314,16 +329,19 @@ trackPoint.setAppName("Custom_app_name-Section_name")
 AdformTrackingSDK.sharedInstance().send(trackPoint)
 ```
 
-#### Objective-C
+<details>
+  <summary>Objective-C</summary>
 
-````objc
+```objc
 AFTrackPoint *trackPoint = [[AFTrackPoint alloc] initTrackPoint:yourTrackingId];
     
 [trackPoint setSectionName:@"Custom Tracking Point Name"];
 [trackPoint setAppName:@"Custom_app_name-Section_name"];
     
 [[AdformTrackingSDK sharedInstance] sendTrackPoint:trackPoint];
-````
+```
+
+</details>
 
 ## 5. Product variables
 
@@ -351,9 +369,10 @@ trackPoint.addProduct(product)
 AdformTrackingSDK.sharedInstance().send(trackPoint)
 ```
 
-#### Objective-C
+<details>
+  <summary>Objective-C</summary>
 
-````objc
+```objc
 AFTrackPoint *trackPoint = [[AFTrackPoint alloc] initTrackPoint:yourTrackingId];
 [trackPoint setSectionName:@"Custom Tracking Point Name"];
     
@@ -369,7 +388,9 @@ AFProduct *product = [[AFProduct alloc] initWithCategoryName:@"Product category 
  [trackPoint addProduct:product];
     
  [[AdformTrackingSDK sharedInstance] sendTrackPoint:trackPoint];
-```` 
+``` 
+
+</details>
 
 Also for same tracking point you can list more than one product variables list:
 
@@ -407,9 +428,10 @@ trackPoint.setProducts([product1, product2])
 AdformTrackingSDK.sharedInstance().send(trackPoint)
 ```
 
-#### Objective-C
+<details>
+  <summary>Objective-C</summary>
 
-````objc
+```objc
 AFTrackPoint *trackPoint = [[AFTrackPoint alloc] initTrackPoint:yourTrackingId];
 [trackPoint setSectionName:@"Custom Tracking Point Name"];
     
@@ -435,8 +457,9 @@ AFProduct *product2 = [[AFProduct alloc] initWithCategoryName:@"Product category
 [trackPoint setProducts:@[product1, product2]];
 
 [[AdformTrackingSDK sharedInstance] sendTrackPoint:trackPoint];
-```` 
+``` 
 
+</details>
 
 If you want to send only part of available product data, you can avoid using big init method by setting those properties manually after creating an object with default initializer.
 
@@ -452,9 +475,11 @@ trackPoint.addProduct(product)
 AdformTrackingSDK.sharedInstance().send(trackPoint)
 ```
 
-#### Objective-C
+<details>
+  <summary>Objective-C</summary>
 
-````objc
+
+```objc
 AFTrackPoint *trackPoint = [[AFTrackPoint alloc] initTrackPoint:Tracking_ID];
 
 AFProduct *product = [AFProduct new];
@@ -462,7 +487,9 @@ product.productName = @"My Product Name";
 [trackPoint addProduct:product];
     
 [[AdformTrackingSDK sharedInstance] sendTrackPoint:trackPoint];
-```` 
+```
+
+</details>
 
 ## 6. Sending information to multiple clients
 
@@ -480,11 +507,14 @@ AdformTrackingSDK.sharedInstance()
     )
 ```
 
-#### Objective-C
+<details>
+  <summary>Objective-C</summary>
 
-````objc
+```objc
 [[AdformTrackingSDK sharedInstance] startTrackingWithIds:@[yourTrackingId1, yourTrackingId2, yourTrackingId3] waitForPermissions:true];
-````
+```
+
+</details>
 
 To send custom tracking points for multiple clients, you should use `AFTrackPointsBuilder` class. It helps you create multiple trackpoints with same information, but differrent tracking id.Example bellow ilustrates how to do so:
 
@@ -508,9 +538,10 @@ let trackingPoints = trackPointBuilder.build()
 AdformTrackingSDK.sharedInstance().send(trackingPoints)
 ```
 
-#### Objective-C
+<details>
+  <summary>Objective-C</summary>
 
-````objc
+```objc
 AFTrackPointsBuilder *trackPointBuilder = [[AFTrackPointsBuilder alloc] init];
     
 // You must set at least these properties:
@@ -526,7 +557,9 @@ NSArray *trackPoints = [trackPointBuilder build];
     
 // Send trackpoints.
 [[AdformTrackingSDK sharedInstance] sendTrackPoints:trackPoints];
-````
+```
+
+</details>
 
 ## 7. Limit tracking
 
@@ -538,11 +571,14 @@ You can disable the Adform Tracking SDK from tracking any events by calling `set
 AdformTrackingSDK.sharedInstance().setEnabled(false)
 ```
 
-#### Objective-C
+<details>
+  <summary>Objective-C</summary>
 
-````objc
+```objc
 [[AdformTrackingSDK sharedInstance] setEnabled:NO];
-```` 
+``` 
+
+</details>
 
 You can check if tracking is enabled by calling `isEnabled` method.
 
@@ -560,13 +596,16 @@ func application(_ app: UIApplication, open url: URL, options: [UIApplication.Op
 }
 ```
 
-#### Objective-C
+<details>
+  <summary>Objective-C</summary>
 
-````objc
+```objc
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
     return [[AdformTrackingSDK sharedInstance] applicationOpenURL:url options:options];
 }
-````
+```
+
+</details>
 
 ## 9. SIM card state tracking
 
@@ -581,12 +620,15 @@ AdformTrackingSDK.sharedInstance().setSendSimCardStateEnabled(true)
 AdformTrackingSDK.sharedInstance().startTracking(yourTrackingId, waitForPermissions: true)
 ```
 
-#### Objective-C
+<details>
+  <summary>Objective-C</summary>
 
 ````objc
 [[AdformTrackingSDK sharedInstance] setSendSimCardStateEnabled:true];
 [[AdformTrackingSDK sharedInstance] startTracking:yourTrackingId waitForPermissions:true];
 ````
+
+</details>
 
 ## 10. Security
 
@@ -598,11 +640,14 @@ By default AdformTracking sdk uses HTTPS protocol for network comunnications, bu
 AdformTrackingSDK.sharedInstance().setHTTPSEnabled(false)
 ```
 
-#### Objective-C
+<details>
+  <summary>Objective-C</summary>
 
-````objc
+```objc
 AdformTrackingSDK sharedInstance] setHTTPSEnabled:false];
-````
+```
+
+</details>
 
 ## 11. GDPR
 
@@ -621,7 +666,8 @@ let encodedGDPRConsent = "GgdprConsent".data(using: .utf8)?.base64EncodedString(
 AdformTrackingSDK.sharedInstance().setGDPRConsent(encodedGDPRConsent)
 ```
 
-#### Objective-C
+<details>
+  <summary>Objective-C</summary>
 
 ```objc
 [[AdformTrackingSDK sharedInstance] setGDPR:@(true)];
@@ -629,6 +675,8 @@ AdformTrackingSDK.sharedInstance().setGDPRConsent(encodedGDPRConsent)
 NSString *encodedGDPRConsent = [[@"GgdprConsent" dataUsingEncoding:NSUTF8StringEncoding] base64EncodedStringWithOptions:0];
 [[AdformTrackingSDK sharedInstance] setGDPRConsent:encodedGDPRConsent];
 ```
+
+</details>
 
 ## 12. US Privacy
 
@@ -649,12 +697,15 @@ let usPrivacy = "US_PRIVACY"
 AdformTrackingSDK.sharedInstance().setUSPrivacy(usPrivacy)
 ```
 
-#### Objective-C
+<details>
+  <summary>Objective-C</summary>
 
 ```objc
 NSString *usPrivacy = @"US_PRIVACY";
 [[AdformTrackingSDK sharedInstance] setUSPrivacy:usPrivacy];
 ```
+
+</details>
 
 ## 13. Custom user-agent
 
@@ -668,11 +719,14 @@ Example:
 AdformTrackingSDK.sharedInstance().setCustomUserAgent("YOUR CUSTOM USER AGENT")
 ```
 
-#### Objective-C
+<details>
+  <summary>Objective-C</summary>
 
 ```objc
 [[AdformTrackingSDK sharedInstance] setCustomUserAgent:@"YOUR CUSTOM USER AGENT"];
 ```
+
+</details>
 
 ## 14. Debug mode
 
@@ -705,11 +759,14 @@ In iOS 14 we need to ask user for permission to use Advertising Identifier for t
 AdformTrackingSDK.sharedInstance().startTracking(withIds: yourTrackingId, waitForPermissions: true)
 ```
 
-#### Objective-C
+<details>
+  <summary>Objective-C</summary>
 
 ```objc
 [[AdformTrackingSDK sharedInstance] startTracking:yourTrackingId waitForPermissions:true];
 ```
+
+</details>
 
 2. Ask user for permission to access Advertising Identifier using `requestTrackingPermissions` method. Calling this method will present a systemic permissions alert, therefore it's up to you to decide when it is most apropriate to show it. 
 
@@ -721,13 +778,16 @@ if #available(iOS 14.0, *) {
 }
 ```
 
-#### Objective-C
+<details>
+  <summary>Objective-C</summary>
 
 ```objc
 if (@available(iOS 14.0, *)) {
     [[AdformTrackingSDK sharedInstance] requestTrackingPermissions];
 }
 ```
+
+</details>
 
 3. Add `NSUserTrackingUsageDescription` entry to your apps `Info.plist` file. 
 
