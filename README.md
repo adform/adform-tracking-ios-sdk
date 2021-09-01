@@ -4,6 +4,10 @@ When you run mobile campaigns, boost of new app installs are often one of the ma
 
 ***If you have any issues or suggestions please contact mobile-sdk@adform.com***
 
+## ***iOS 15 support***
+
+You can check out the new Adform Tracking SDK version that supports iOS 15 in `ios_15` branch.
+
 ## ***Important iOS 14 support***
 
 Apple introduced a new AppTrackingTransparency framework and tracking permission in iOS 14. To support these changes you will need to make couple of small changes in Adform Tracking SDK integration. For more information check [Migration Guide](https://github.com/adform/adform-tracking-ios-sdk#upgrading-to-170) down bellow.
