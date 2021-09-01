@@ -794,6 +794,12 @@ if (@available(iOS 14.0, *)) {
 
 # Release notes
 
+## 1.8.0
+
+### New Features
+
+* Updated for iOS 15 Beta.
+	
 ## 1.7.4
 
 ### New Features
