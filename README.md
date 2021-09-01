@@ -12,8 +12,8 @@ Apple introduced a new AppTrackingTransparency framework and tracking permission
 
 The use of Adform Tracking SDK requires the following:
 
-* Xcode 9.0 or later.
-* Requires deployment target 9.0 or later.
+* Xcode 13.0 beta 5 or later.
+* Requires deployment target 12.0 or later.
 * Requires ARC to be enabled. 
 
 [**Please folow Migration guide below if you are updating SDK to version 1.0.**](https://github.com/adform/adform-tracking-ios-sdk#upgrading-to-10)
@@ -35,7 +35,7 @@ You can add Adform Tracking SDK as a dependency to your project through Xcode UI
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/adform/adform-tracking-ios-sdk", .upToNextMajor(from: "1.7.4"))
+    .package(url: "https://github.com/adform/adform-tracking-ios-sdk", .branch("ios_15"))
 ]
 ```
 
@@ -56,7 +56,7 @@ rm -rf "${APP_PATH}/Plugins/ProtocolBuffers.framework"
 Adform Tracking SDK is available via [CocoaPods](https://cocoapods.org/). To integrate SDK using CocoaPods, you need to edit `Podfile` and specify the `AdformTracking` pod.
 
 ```
-pod 'AdformTracking', '~> 1.7.4'
+pod 'AdformTracking', :git => 'https://github.com/adform/adform-tracking-ios-sdk', :branch => 'ios_15'
 ```
 
 For more information about CocoaPods visit [CocoaPods site](http://cocoapods.org/about).
