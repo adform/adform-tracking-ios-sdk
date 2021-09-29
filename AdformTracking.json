@@ -4,5 +4,6 @@
     "1.5.0": "https://github.com/adform/adform-tracking-ios-sdk/releases/download/v.1.5.0/AdformTracking.framework.zip",
     "1.5.1": "https://github.com/adform/adform-tracking-ios-sdk/releases/download/v.1.5.1/AdformTracking.framework.zip",
     "1.6.0": "https://github.com/adform/adform-tracking-ios-sdk/releases/download/v.1.6.0/AdformTracking.framework.zip",
-    "1.7.0": "https://github.com/adform/adform-tracking-ios-sdk/releases/download/v.1.7.0/AdformTracking.framework.zip"
+    "1.7.0": "https://github.com/adform/adform-tracking-ios-sdk/releases/download/v.1.7.0/AdformTracking.framework.zip",
+    "1.8.0": "https://github.com/adform/adform-tracking-ios-sdk/releases/download/1.8.0/AdformTracking.xcframework.zip"
 }
