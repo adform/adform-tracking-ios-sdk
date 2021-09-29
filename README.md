@@ -175,7 +175,7 @@ Thats it! You are ready to go. Now in Adform system will see default tracking po
 ```swift
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-    AdformTrackingSDK.sharedInstance().startTracking(yourTrackingId, waitForPermissions: true)
+    AdformTrackingSDK.sharedInstance().startTracking(yourTrackingId, waitForPermissions: false)
         
     return true
 }
