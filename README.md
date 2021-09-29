@@ -144,6 +144,10 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 
 * Then call `requestTrackingPermissions` to get user permission to use Advertising Identifier for tracking. Calling this method will present systemic permission alert. Therefore, it is up to you to decide when it is best to show this alert. 
 
+**Important iOS 15 support** 
+
+On iOS 15 you must make sure that tracking permissions are requested when app is in active state. Otherwise, permission request will not be presented.
+
 #### Swift
 
 ```swift
