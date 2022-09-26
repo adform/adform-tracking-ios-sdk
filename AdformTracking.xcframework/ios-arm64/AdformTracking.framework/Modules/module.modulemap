@@ -1,0 +1,17 @@
+framework module AdformTracking {
+    umbrella header "AdformTracking.h"
+
+    export *
+    module * { export * }
+
+    link "xml2"
+
+    link framework "Foundation"
+    link framework "UIKit"
+    link framework "SystemConfiguration"
+    link framework "AdSupport"
+    link framework "CoreData"
+    link framework "CoreTelephony"
+    link framework "WebKit"
+    link framework "AppTrackingTransparency"
+}

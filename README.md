@@ -798,6 +798,12 @@ if (@available(iOS 14.0, *)) {
 
 # Release notes
 
+## 1.9.0
+
+### New Features
+
+* iOS 16 support.
+
 ## 1.8.0
 
 ### New Features
